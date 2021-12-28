@@ -1,0 +1,33 @@
+.clock-numbers {
+    position: absolute;
+    font-size: 110px;
+    line-height: 90px;
+    color: #FFFFFF;
+}    
+
+.clock-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 370px;
+    height: 370px;
+    left: 59px;
+    top: 42px;
+    border-radius: 100%;
+    
+    background: #182724;
+    box-shadow: 10px 10px 60px 10px rgba(0, 0, 0, 0.1), -30px 40px 60px rgba(0, 0, 0, 0.9), inset 3px 3px 35px rgba(0, 0, 0, 0.4);
+}
+
+.clock-inner-ring {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 100%;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='white' stroke-width='2' stroke-dasharray='1%2c10' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+    border-radius: 100%;
+}
