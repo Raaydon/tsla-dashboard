@@ -1,7 +1,7 @@
 {
   "name": "tsla-dashboard",
   "version": "0.1.0",
-  "homepage": "/not-wordle",
+  "homepage": "/",
   "private": false,
   "dependencies": {
     "@emotion/react": "^11.7.1",
