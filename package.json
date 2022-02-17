@@ -34,6 +34,7 @@
         "react-router-dom": "6.0.0-beta.0",
         "react-scripts": "^4.0.3",
         "redux": "^4.0.5",
+        "teslajs": "^4.10.0",
         "yup": "^0.32.9"
     },
     "scripts": {
