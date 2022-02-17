@@ -5,7 +5,7 @@ import { useModal } from "react-hooks-use-modal";
 import MainNav from "./components/Nav/MainNav";
 
 function App() {
-	return <MainNav />;
+	return (<MainNav />;)
 }
 
 export default App;
