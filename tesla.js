@@ -19,8 +19,8 @@ const options = {
       {
         grant_type: "refresh_token",
         client_id: "ownerapi",
-        client_secret: client_secret,
-        refresh_token: refresh_token,
+        client_secret: options.client_secret,
+        refresh_token: options.refresh_token,
         scope: "openid email offline_access"
       }
     ).body
