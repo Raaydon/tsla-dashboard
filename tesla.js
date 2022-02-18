@@ -13,7 +13,6 @@ const options = {
     client_options: {}
 }
 
-  const refresh_access_token
     axios.post(
       options.sso_uri + "/oauth2/v3/token",
       {
@@ -23,7 +22,7 @@ const options = {
         refresh_token: options.refresh_token,
         scope: "openid email offline_access"
       }
-    ).body
+    )
 
     @refresh_token = response["refresh_token"]
     exchange_sso_access_token(response["access_token"])
