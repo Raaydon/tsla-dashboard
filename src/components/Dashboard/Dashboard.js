@@ -1,10 +1,11 @@
 import React from "react";
-import Tjs from 'teslajs';
+var tjs = require('teslajs');
+
 
 export default function Dashboard() {
 	const authToken = process.env.REACT_APP_TOKEN;
 	var options = { authToken: authToken };
-    Tjs.vehicle(options, function (err, vehicle) {
+    tjs.vehicle(options, function (err, vehicle) {
         console.log("Vehicle " + vehicle.vin + " is: " + vehicle.state);
     });
 	return (
