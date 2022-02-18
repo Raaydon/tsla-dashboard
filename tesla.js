@@ -67,7 +67,7 @@ code_verifier = rand(36**86).to_s(36)
 code_challenge = Base64.urlsafe_encode64(Digest::SHA256.hexdigest(code_verifier))
 state = rand(36**20).to_s(36)
 
-sso_api = Faraday.new(@sso_uri + "/oauth2/v3", ssl: {version: :TLSv1_2}) { |conn|
+sso_api = Faraday.new(options.sso_uri + "/oauth2/v3", ssl: {version: :TLSv1_2}) { |conn|
     # conn.response :logger, null, {headers: true, bodies: true}
     conn.adapter Faraday.default_adapter
 }
