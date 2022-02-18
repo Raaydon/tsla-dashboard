@@ -5,7 +5,6 @@ const email = process.env.REACT_APP_EMAIL;
 const password = process.env.REACT_APP_PASSWORD;
 
 var options = { authToken: authToken };
-tjs.vehicle(options, function (err, vehicle) {
-    // console.log("Vehicle " + vehicle.vin + " is: " + vehicle.state);
-    console.log(vehicle);
+tjs.vehicleAsync(options).done(function(vehicle) {
+    console.log("Vehicle " + vehicle.vin + " is: " + vehicle.state);
 });
