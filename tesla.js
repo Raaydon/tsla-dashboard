@@ -14,7 +14,7 @@ const options = {
 }
 
   const refresh_access_token
-    axios.get(
+    axios.post(
       options.sso_uri + "/oauth2/v3/token",
       {
         grant_type: "refresh_token",
