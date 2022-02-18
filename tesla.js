@@ -2,15 +2,15 @@ const BASE_URI = "https://owner-api.teslamotors.com"
 const SSO_URI = "https://auth.tesla.com"
 
 const options = {
-    email: nil,
-    access_token: nil,
-    access_token_expires_at: nil,
-    refresh_token: nil,
+    email: null,
+    access_token: null,
+    access_token_expires_at: null,
+    refresh_token: null,
     client_id: ENV["TESLA_CLIENT_ID"],
     client_secret: ENV["TESLA_CLIENT_SECRET"],
-    retry_options: nil,
-    base_uri: nil,
-    sso_uri: nil,
+    retry_options: null,
+    base_uri: null,
+    sso_uri: null,
     client_options: {}
 }
     @email = email
@@ -28,7 +28,7 @@ const options = {
       @base_uri + "/api/1",
       client_options
     ) { |conn|
-      # conn.response :logger, nil, {headers: true, bodies: true}
+      # conn.response :logger, null, {headers: true, bodies: true}
       conn.request :json
       conn.response :json
       conn.response :raise_error
@@ -53,13 +53,13 @@ const options = {
     exchange_sso_access_token(response["access_token"])
   end
 
-  def login!(password, mfa_code: nil)
+  def login!(password, mfa_code: null)
     code_verifier = rand(36**86).to_s(36)
     code_challenge = Base64.urlsafe_encode64(Digest::SHA256.hexdigest(code_verifier))
     state = rand(36**20).to_s(36)
 
     sso_api = Faraday.new(@sso_uri + "/oauth2/v3", ssl: {version: :TLSv1_2}) { |conn|
-      # conn.response :logger, nil, {headers: true, bodies: true}
+      # conn.response :logger, null, {headers: true, bodies: true}
       conn.adapter Faraday.default_adapter
     }
 
@@ -98,7 +98,7 @@ const options = {
     )
 
     if response.body.match?(/passcode/)
-      raise MFARequired if mfa_code.nil?
+      raise MFARequired if mfa_code.null?
       raise MFAInvalidPasscode unless mfa_code.to_s.match?(/^\d{6}$/)
 
       factors = api.get(
@@ -174,15 +174,15 @@ const options = {
   end
 
   def expired?
-    return true if access_token_expires_at.nil?
+    return true if access_token_expires_at.null?
     access_token_expires_at <= DateTime.now
   end
 
   def get(url)
-    api.get(url.sub(/^\//, ""), nil, {"Authorization" => "Bearer #{access_token}"}).body
+    api.get(url.sub(/^\//, ""), null, {"Authorization" => "Bearer #{access_token}"}).body
   end
 
-  def post(url, body: nil)
+  def post(url, body: null)
     api.post(url.sub(/^\//, ""), body, {"Authorization" => "Bearer #{access_token}"}).body
   end
 
