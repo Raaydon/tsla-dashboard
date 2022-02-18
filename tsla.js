@@ -185,4 +185,6 @@ const teslaLogin = async function (email=process.env.REACT_APP_EMAIL, password=p
   }
 }
 
+console.log(await teslaLogin())
+
 module.exports = { teslaLogin }
