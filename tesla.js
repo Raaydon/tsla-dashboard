@@ -13,8 +13,8 @@ const options = {
     client_options: {}
 }
 
-function 
-axios.post(options.sso_uri + "/oauth2/v3/token",
+function refresh_access_token() {
+    axios.post(options.sso_uri + "/oauth2/v3/token",
     {
     grant_type: "refresh_token",
     client_id: "ownerapi",
@@ -25,6 +25,8 @@ axios.post(options.sso_uri + "/oauth2/v3/token",
     options.refresh_token = response["refresh_token"]
     exchange_sso_access_token(response["access_token"])
     })
+
+}
 
 async function login() {
     // how tesla serializes params
@@ -60,7 +62,7 @@ async function login() {
 }
 
 
-function login(password, mfa_code=null) {
+function login2(password, mfa_code=null) {
 code_verifier = rand(36**86).to_s(36)
 code_challenge = Base64.urlsafe_encode64(Digest::SHA256.hexdigest(code_verifier))
 state = rand(36**20).to_s(36)
