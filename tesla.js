@@ -26,6 +26,7 @@ axios.post(options.sso_uri + "/oauth2/v3/token",
     })
 
 async function login() {
+    // how tesla serializes params
     function paramsSerializer(params) {
         return Object.keys(params).map(key => {
             return `${key}=${encodeURIComponent(params[key]).replace(/%20/g, '+').replace(/%3A/g, ':')}`;
