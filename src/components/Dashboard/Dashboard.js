@@ -1,5 +1,4 @@
 import React from "react";
-var tjs = require('teslajs');
 
 
 export default function Dashboard() {
