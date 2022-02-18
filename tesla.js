@@ -11,7 +11,7 @@ const options = {
     client_options: {}
 }
 
-    @api = Faraday.new(
+    const api = Faraday.new(
       @base_uri + "/api/1",
       client_options
     ) { |conn|
