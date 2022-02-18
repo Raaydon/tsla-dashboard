@@ -32,6 +32,26 @@ async function login() {
             return `${key}=${encodeURIComponent(params[key]).replace(/%20/g, '+').replace(/%3A/g, ':')}`;
         }).join('&');
     };
+    // set up variables for initial login page
+  const redirect_uri = 'https://auth.tesla.com/void/callback';
+  const state = '123';
+  const code_verifier = crypto.randomBytes(64).toString('base64').replace(/[+/=]/g, m => ({ '+': '-', '/': '_' }[m] || ''));
+  const code_challenge = crypto.createHash('sha256')
+    .update(code_verifier)
+    .digest('base64')
+    .replace(/[+/=]/g, m => ({ '+': '-', '/': '_' }[m] || ''));
+  const queryParams = {
+    client_id: 'ownerapi',
+    code_challenge,
+    code_challenge_method: 'S256',
+    redirect_uri,
+    response_type: 'code',
+    scope: 'openid email offline_access',
+    state,
+    login_hint: email,
+  };
+  const queryString = paramsSerializer(queryParams);
+  const url = `https://auth.tesla.com/oauth2/v3/authorize?${queryString}`;
     
 }
 
