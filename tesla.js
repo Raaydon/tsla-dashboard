@@ -13,21 +13,8 @@ const options = {
     client_options: {}
 }
 
-    const api = Faraday.new(
-      @base_uri + "/api/1",
-      client_options
-    ) { |conn|
-      # conn.response :logger, null, {headers: true, bodies: true}
-      conn.request :json
-      conn.response :json
-      conn.response :raise_error
-      conn.request :retry, retry_options if retry_options # Must be registered after :raise_error
-      conn.adapter Faraday.default_adapter
-    }
-  end
-
-  def refresh_access_token
-    response = @api.post(
+  const refresh_access_token
+    axios.get(
       @sso_uri + "/oauth2/v3/token",
       {
         grant_type: "refresh_token",
