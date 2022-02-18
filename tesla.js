@@ -21,10 +21,10 @@ const options = {
         refresh_token: options.refresh_token,
         scope: "openid email offline_access"
       }).then((response) => {
-          console.log(response);
+        const refresh_token = response["refresh_token"]
+
       })
 
-    @refresh_token = response["refresh_token"]
     exchange_sso_access_token(response["access_token"])
   end
 
