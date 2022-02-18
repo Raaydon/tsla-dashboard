@@ -1,6 +1,3 @@
-const BASE_URI = "https://owner-api.teslamotors.com"
-const SSO_URI = "https://auth.tesla.com"
-
 const options = {
     email: process.env.REACT_APP_EMAIL,
     access_token: null,
@@ -9,8 +6,8 @@ const options = {
     client_id: process.env.TESLA_CLIENT_ID,
     client_secret: process.env.TESLA_CLIENT_SECRET,
     retry_options: null,
-    base_uri: null,
-    sso_uri: null,
+    base_uri: "https://owner-api.teslamotors.com",
+    sso_uri: "https://auth.tesla.com",
     client_options: {}
 }
     @email = email
