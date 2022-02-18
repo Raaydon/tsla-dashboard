@@ -1,8 +1,8 @@
 const options = {
     email: process.env.REACT_APP_EMAIL,
-    access_token: process.env.,
+    access_token: process.env.REACT_APP_TOKEN,
     access_token_expires_at: null,
-    refresh_token: null,
+    refresh_token: process.env.REACT_APP_REFRESH_TOKEN,
     client_id: process.env.TESLA_CLIENT_ID,
     client_secret: process.env.TESLA_CLIENT_SECRET,
     retry_options: null,
@@ -10,8 +10,6 @@ const options = {
     sso_uri: "https://auth.tesla.com",
     client_options: {}
 }
-    @access_token_expires_at = access_token_expires_at
-    @refresh_token = refresh_token
 
     @api = Faraday.new(
       @base_uri + "/api/1",
