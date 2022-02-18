@@ -2,7 +2,7 @@ const BASE_URI = "https://owner-api.teslamotors.com"
 const SSO_URI = "https://auth.tesla.com"
 
 const options = {
-    email: null,
+    email: process.env.,
     access_token: null,
     access_token_expires_at: null,
     refresh_token: null,
