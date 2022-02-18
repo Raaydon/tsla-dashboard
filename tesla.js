@@ -25,10 +25,10 @@ axios.post(options.sso_uri + "/oauth2/v3/token",
     exchange_sso_access_token(response["access_token"])
     })
 
-const paramsSerializer = (params) => {
-return Object.keys(params).map(key => {
-    return `${key}=${encodeURIComponent(params[key]).replace(/%20/g, '+').replace(/%3A/g, ':')}`;
-}).join('&');
+function paramsSerializer(params) {
+    return Object.keys(params).map(key => {
+        return `${key}=${encodeURIComponent(params[key]).replace(/%20/g, '+').replace(/%3A/g, ':')}`;
+    }).join('&');
 };
 
 
