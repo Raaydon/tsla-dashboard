@@ -22,11 +22,9 @@ const options = {
         scope: "openid email offline_access"
       }).then((response) => {
         const refresh_token = response["refresh_token"]
-
+        exchange_sso_access_token(response["access_token"])
       })
 
-    exchange_sso_access_token(response["access_token"])
-  end
 
   def login!(password, mfa_code: null)
     code_verifier = rand(36**86).to_s(36)
