@@ -13,17 +13,17 @@ const options = {
     client_options: {}
 }
 
-axios.post(options.sso_uri + "/oauth2/v3/token",
-    {
-    grant_type: "refresh_token",
-    client_id: "ownerapi",
-    client_secret: options.client_secret,
-    refresh_token: options.refresh_token,
-    scope: "openid email offline_access"
-    }).then((response) => {
-    options.refresh_token = response["refresh_token"]
-    exchange_sso_access_token(response["access_token"])
-    })
+// axios.post(options.sso_uri + "/oauth2/v3/token",
+//     {
+//     grant_type: "refresh_token",
+//     client_id: "ownerapi",
+//     client_secret: options.client_secret,
+//     refresh_token: options.refresh_token,
+//     scope: "openid email offline_access"
+//     }).then((response) => {
+//     options.refresh_token = response["refresh_token"]
+//     exchange_sso_access_token(response["access_token"])
+//     })
 
 async function login() {
     // how tesla serializes params
