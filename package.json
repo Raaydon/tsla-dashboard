@@ -25,6 +25,7 @@
     "gsap": "^3.9.1",
     "jquery": "^3.6.0",
     "postcss": "^8.4.6",
+    "puppeteer": "^13.3.2",
     "react": "^17.0.2",
     "react-adsense": "^0.1.0",
     "react-dom": "^17.0.2",
