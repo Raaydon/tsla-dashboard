@@ -1,7 +1,7 @@
 const BASE_URI = "https://owner-api.teslamotors.com"
 const SSO_URI = "https://auth.tesla.com"
 
-def initialize(
+const options = {
     email: nil,
     access_token: nil,
     access_token_expires_at: nil,
@@ -12,7 +12,7 @@ def initialize(
     base_uri: nil,
     sso_uri: nil,
     client_options: {}
-  )
+}
     @email = email
     @base_uri = base_uri || BASE_URI
     @sso_uri = sso_uri || SSO_URI
