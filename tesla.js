@@ -6,5 +6,6 @@ const password = process.env.REACT_APP_PASSWORD;
 
 var options = { authToken: authToken };
 tjs.vehicle(options, function (err, vehicle) {
-    console.log("Vehicle " + vehicle.vin + " is: " + vehicle.state);
+    // console.log("Vehicle " + vehicle.vin + " is: " + vehicle.state);
+    console.log(vehicle);
 });
