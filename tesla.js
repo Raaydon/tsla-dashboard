@@ -56,39 +56,16 @@ async function login() {
   const queryString = paramsSerializer(queryParams);
   const url = `https://auth.tesla.com/oauth2/v3/authorize?${queryString}`;
 
-  axios.get(url).then((response) => {})
+  axios.get(url).then((response) => { // scan html document for cookies???
+    cookie = response.headers["set-cookie"].split(" ").first
+    parameters = response.body.scan(/type="hidden" name="(.*?)" value="(.*?)"/).to_h
+    transaction_id = parameters["transaction_id"]
+  })
 
     
 }
 
 
-function login2(password, mfa_code=null) {
-code_verifier = rand(36**86).to_s(36)
-code_challenge = Base64.urlsafe_encode64(Digest::SHA256.hexdigest(code_verifier))
-state = rand(36**20).to_s(36)
-
-sso_api = Faraday.new(options.sso_uri + "/oauth2/v3", ssl: {version: :TLSv1_2}) { |conn|
-    # conn.response :logger, null, {headers: true, bodies: true}
-    conn.adapter Faraday.default_adapter
-}
-}
-
-response = sso_api.get(
-    "authorize",
-    {
-    client_id: "ownerapi",
-    code_challenge: code_challenge,
-    code_challenge_method: "S256",
-    redirect_uri: "https://auth.tesla.com/void/callback",
-    response_type: "code",
-    scope: "openid email offline_access",
-    state: state
-    }
-)
-
-cookie = response.headers["set-cookie"].split(" ").first
-parameters = response.body.scan(/type="hidden" name="(.*?)" value="(.*?)"/).to_h
-transaction_id = parameters["transaction_id"]
 
 response = sso_api.post(
     "authorize?" + URI.encode_www_form({
