@@ -1,6 +1,6 @@
 const options = {
     email: process.env.REACT_APP_EMAIL,
-    access_token: null,
+    access_token: process.env.,
     access_token_expires_at: null,
     refresh_token: null,
     client_id: process.env.TESLA_CLIENT_ID,
@@ -10,14 +10,6 @@ const options = {
     sso_uri: "https://auth.tesla.com",
     client_options: {}
 }
-    @email = email
-    @base_uri = base_uri || BASE_URI
-    @sso_uri = sso_uri || SSO_URI
-
-    @client_id = client_id
-    @client_secret = client_secret
-
-    @access_token = access_token
     @access_token_expires_at = access_token_expires_at
     @refresh_token = refresh_token
 
