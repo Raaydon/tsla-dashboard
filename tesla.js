@@ -25,11 +25,14 @@ axios.post(options.sso_uri + "/oauth2/v3/token",
     exchange_sso_access_token(response["access_token"])
     })
 
-function paramsSerializer(params) {
-    return Object.keys(params).map(key => {
-        return `${key}=${encodeURIComponent(params[key]).replace(/%20/g, '+').replace(/%3A/g, ':')}`;
-    }).join('&');
-};
+async function login() {
+    function paramsSerializer(params) {
+        return Object.keys(params).map(key => {
+            return `${key}=${encodeURIComponent(params[key]).replace(/%20/g, '+').replace(/%3A/g, ':')}`;
+        }).join('&');
+    };
+    
+}
 
 
 def login!(password, mfa_code: null)
