@@ -53,7 +53,7 @@ async function login() {
   const queryString = paramsSerializer(queryParams);
   const url = `https://auth.tesla.com/oauth2/v3/authorize?${queryString}`;
 
-  axios.get('https://auth.tesla.com/oauth2/v3/authorize')
+  axios.get(url).then((response) => {})
 
     
 }
