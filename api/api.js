@@ -63,12 +63,11 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 app.get("/vehicle/:id/data/", async (req, res) => {
 	const accessToken = req.headers.authorization.replace(/^Bearer /, ""),
 		id = req.params.id,
-		url = `${baseUrl}/api/1/vehicles/${id}`;
+		url = `${baseUrl}/api/1/vehicles/${id}/vehicle_data`;
 
 	if (!accessToken || !id || id === null || id === 'null' || accessToken === null) {
 		res.sendStatus(403);
 	} else {
-        console.log('card id: ',id)
 		axios
 			.get(url, {
 				headers: {
