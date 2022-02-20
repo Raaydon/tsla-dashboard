@@ -7,7 +7,8 @@ const { access } = require("fs");
 
 const email = process.env.REACT_APP_EMAIL;
 const password = process.env.REACT_APP_PASSWORD;
-const acessToken = process.env.REACT_APP_ACCESS_TOKEN;
+const acessToken = process.env.REACT_APP_TOKEN;
+
 const app = express();
 const port = 5000;
 const baseUrl = "https://owner-api.teslamotors.com";
