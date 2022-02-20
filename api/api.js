@@ -7,7 +7,7 @@ const { access } = require("fs");
 
 const email = process.env.REACT_APP_EMAIL;
 const password = process.env.REACT_APP_PASSWORD;
-const acessToken = process.env.REACT_APP_TOKEN;
+var accessToken = process.env.REACT_APP_TOKEN;
 
 const app = express();
 const port = 5000;
