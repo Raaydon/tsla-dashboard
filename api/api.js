@@ -38,7 +38,7 @@ function checkAwake(id) {
 							awake = true;
 						});
 				});
-		}, 10000);
+		}, 10000); // 10s
 	}
 }
 
