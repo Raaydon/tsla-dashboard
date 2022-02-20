@@ -88,7 +88,7 @@ const teslaLogin = async function (
 			try {
 				imagePicker = await page.waitForSelector(
 					'iframe[title="recaptcha challenge expires in two minutes"]',
-					{ timeout: 1000 }
+					{ timeout: 10000 }
 				);
 			} catch (e) {
 				console.log(e);
@@ -97,7 +97,6 @@ const teslaLogin = async function (
 				throw new Error("Cannot automatically solve image picker!");
 			}
 		}
-		await page.waitForTimeout(5000);
 	};
 
 	const submitForm = async () => {
