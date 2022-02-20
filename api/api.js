@@ -34,6 +34,7 @@ app.get("/vehicles", async (req, res) => {
 
 app.get("/vehicle/", async (req, res) => {
 	const accessToken = req.headers.authorization.replace(/^Bearer /, "");
+    console.log(accessToken);
 	if (!accessToken) res.sendStatus(403);
 	const response = await axios.get(`${baseUrl}/api/1/vehicles/`, {
 		headers: {
