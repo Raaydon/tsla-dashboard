@@ -15,8 +15,8 @@ const baseUrl = "https://owner-api.teslamotors.com";
 
 var awake = false;
 function checkAwake() {
-	let url = `${baseUrl}/api/1/vehicles`;
-	axios
+    while (awake === false) {
+        axios
 		.get(url, {
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
@@ -28,6 +28,9 @@ function checkAwake() {
 		.then((res) => {
 			awake = true;
 		});
+    }
+	let url = `${baseUrl}/api/1/vehicles`;
+	
 }
 
 app.use(function (req, res, next) {
