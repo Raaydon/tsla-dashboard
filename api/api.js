@@ -63,7 +63,7 @@ app.get("/vehicles", async (req, res) => {
 				},
 			})
 			.then((response) => {
-				const id = response?.data?.response[0]?.id;
+				id = response?.data?.response[0]?.id;
 				res.send(JSON.stringify(id));
 			})
 			.catch((err) => {
