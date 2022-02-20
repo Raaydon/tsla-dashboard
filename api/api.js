@@ -49,7 +49,7 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 		id = req.params.id,
 		url = `${baseUrl}/api/1/vehicles/${id}/vehicle_data`;
 
-	if (!accessToken) res.sendStatus(403);
+	if (!accessToken ) res.sendStatus(403);
 	const response = await axios.get(url, {
 		headers: {
 			Authorization: `Bearer ${accessToken}`,
