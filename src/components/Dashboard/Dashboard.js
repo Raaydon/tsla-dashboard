@@ -66,6 +66,7 @@ export default function Dashboard() {
 				},
 			})
 			.then((response) => {
+				console.log(response)
 				sessionStorage.setItem("id", response.data);
 				const storedDataClone = { ...storedData };
 				storedDataClone.id = response.data;
