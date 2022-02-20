@@ -30,19 +30,19 @@ app.get('/vehicles', async (req, res) => {
 
 app.get('/vehicle/', async (req, res) => {
     try {
-        const accessToken = req.headers.authorization.replace(/^Bearer /, '');
-        if (!accessToken) res.sendStatus(403);
-        const response = await axios.get(`${baseUrl}/api/1/vehicles/`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            }
-        });
-        const id = response?.data?.response[0]?.id;
-        res.send(JSON.stringify(id));
-    } catch (error) {
-        console.log('error at vehicle');
-    }
-
+    const accessToken = req.headers.authorization.replace(/^Bearer /, '');
+    if (!accessToken) res.sendStatus(403);
+    const response = await axios.get(`${baseUrl}/api/1/vehicles/`, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        }
+    });
+    const id = response?.data?.response[0]?.id;
+    res.send(JSON.stringify(id));
+} catch (error) {
+    console.log('error', error)
+}
+});
 
 app.get('/vehicle/:id/state/', async (req, res) => {
     const accessToken = req.headers.authorization.replace(/^Bearer /, ''),
