@@ -60,6 +60,27 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 	}
 });
 
+app.get("/vehicle/:id/data/", async (req, res) => {
+	const accessToken = req.headers.authorization.replace(/^Bearer /, ""),
+		id = req.params.id,
+		url = `${baseUrl}/api/1/vehicles/${id}`;
+
+	if (!accessToken || !id || id === null || id === 'null' || accessToken === null) {
+		res.sendStatus(403);
+	} else {
+        console.log('card id: ',id)
+		axios
+			.get(url, {
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			})
+			.then((response) => {
+				res.send(JSON.stringify(response?.data?.response));
+			});
+	}
+});
+
 app.get("/", async (req, res) => {
 	var accessToken = process.env.REACT_APP_TOKEN;
 	if (accessToken === undefined) {
