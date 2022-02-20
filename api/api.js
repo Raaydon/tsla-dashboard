@@ -111,7 +111,7 @@ app.get("/", async (req, res) => {
 				res.send(JSON.stringify(response?.data?.response));
 			})
             .catch((err) => {
-				console.log(err.toJSON());
+				console.log(err);
 			})
 	}
 	return res.send(JSON.stringify(accessToken));
