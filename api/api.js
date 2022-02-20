@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
 
 app.get("/vehicles", async (req, res) => {
 	const accessToken = req.headers.authorization.replace(/^Bearer /, "");
-	if (!accessToken) {
+	if (!accessToken || accessToken === null) {
 		res.sendStatus(403);
 	} else {
 		axios
