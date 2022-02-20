@@ -9,13 +9,16 @@ const DataCard = (props) => {
 			return metric ? <span>Yes</span> : <span>No</span>;
 		}
 	};
-	console.log(props)
-	return (
-		<Card style={{ textAlign: "center" }}>
-			<p>{props.label}</p>
-			<p>{renderMetric(props.metric)}</p>
-		</Card>
-	);
+	console.log(props);
+	const cardContent = () => {
+		return (
+			<>
+				<p>{props.label}</p>
+				<p>{renderMetric(props.metric)}</p>
+			</>
+		);
+	};
+	return <Card style={{ textAlign: "center" }}></Card>;
 };
 
 export default DataCard;
