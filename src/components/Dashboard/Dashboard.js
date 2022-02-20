@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import DataCard from '../DataCard'
+import DataCard from "../DataCard";
 
 const items = [
 	"access_token",
@@ -14,7 +14,11 @@ const items = [
 const dataObj = {};
 const dataUrl = "http://localhost:7777";
 
-items.forEach((item) => (dataObj[[item]] = sessionStorage.getItem(item)));
+items.forEach((item) => {
+	var x = sessionStorage.getItem(item)
+	if (x === 'undefined')
+	dataObj[item]
+});
 
 export default function Dashboard() {
 	const [storedData, setStoredData] = useState(dataObj);
@@ -22,7 +26,7 @@ export default function Dashboard() {
 	const [loading, setLoading] = useState(true);
 	const [status, setStatus] = useState("");
 	useEffect(() => {
-		console.log('stored data: ', storedData);
+		console.log("stored data: ", storedData);
 		if (!storedData.access_token || storedData.access_token === undefined) {
 			setStatus("loading");
 			authenticateUser();
@@ -39,8 +43,8 @@ export default function Dashboard() {
 		axios
 			.get(dataUrl)
 			.then((response) => {
-				const tempStoredData = storedData
-				tempStoredData.access_token = response.data
+				const tempStoredData = storedData;
+				tempStoredData.access_token = response.data;
 				setStoredData(tempStoredData); // set stored data to token
 				items.forEach(
 					(item) =>
