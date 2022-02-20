@@ -31,7 +31,7 @@ function checkAwake() {
 			.then((res) => {
 				awake = true;
 			});
-        }, 5000);
+        }, 10000);
 	}
 }
 
