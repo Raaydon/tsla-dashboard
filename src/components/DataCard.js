@@ -18,7 +18,7 @@ const DataCard = (props) => {
 			</>
 		);
 	};
-	return <Card content={cardContent}></Card>;
+	return <div className="card" content={cardContent}></div>;
 };
 
 export default DataCard;
