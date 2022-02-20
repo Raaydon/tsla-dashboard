@@ -47,7 +47,7 @@ export default function Dashboard() {
 			.get(dataUrl)
 			.then((response) => {
 				const tempStoredData = storedData;
-				tempStoredData.access_token = response.data;
+				tempStoredData.access_token = response;
 				setStoredData(tempStoredData); // set stored data to token
 				items.forEach(
 					(item) =>
