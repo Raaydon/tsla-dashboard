@@ -24,9 +24,6 @@ function checkAwake() {
 					Authorization: `Bearer ${accessToken}`,
 				},
 			})
-			.then((response) => {
-				res.send(JSON.stringify(response?.data?.response));
-			})
             .catch((err) => {
 				console.log(err);
 			})
