@@ -60,7 +60,7 @@ export default function Dashboard() {
 
 	function storeVehicleId(accessToken) {
 		axios
-			.get(`${dataUrl}/vehicles/`, {
+			.get(`${dataUrl}/vehicles`, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
 				},
