@@ -44,12 +44,14 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 		url = `${baseUrl}/api/1/vehicles/${id}`;
 
 	if (!accessToken || !id) res.sendStatus(403);
-	const response = await axios.post(url, {
+	axios.post(url, {
 		headers: {
 			Authorization: `Bearer ${accessToken}`,
 		},
-	});
+	}).then((response) => {
+        
 	res.send(JSON.stringify(response?.data?.response));
+});
 });
 
 app.get("/", async (req, res) => {
