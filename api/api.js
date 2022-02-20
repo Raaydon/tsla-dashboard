@@ -22,14 +22,17 @@ app.use(function (req, res, next) {
 
 app.get("/vehicles", async (req, res) => {
 	const accessToken = req.headers.authorization.replace(/^Bearer /, "");
-	if (!accessToken) res.sendStatus(403);
-	const response = await axios.get(`${baseUrl}/api/1/vehicles/`, {
-		headers: {
-			Authorization: `Bearer ${accessToken}`,
-		},
-	});
-	const id = response?.data?.response[0]?.id;
-	res.send(JSON.stringify(id));
+	if (!accessToken) {
+		res.sendStatus(403);
+	} else {
+		const response = await axios.get(`${baseUrl}/api/1/vehicles/`, {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
+		const id = response?.data?.response[0]?.id;
+		res.send(JSON.stringify(id));
+	}
 });
 
 app.get("/vehicle/", async (req, res) => {
