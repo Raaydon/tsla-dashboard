@@ -38,8 +38,7 @@ export default function Dashboard() {
 		axios
 			.get(dataUrl)
 			.then((response) => {
-				console.log('response: ',response)
-				setStoredData(response.data);
+				setStoredData(response.data); // set stored data to token
 				items.forEach(
 					(item) =>
 						item !== "id" &&
