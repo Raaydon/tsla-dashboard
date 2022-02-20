@@ -1,11 +1,120 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import DataCard from '../DataCard'
 
+const items = [
+	"access_token",
+	"token_type",
+	"expires_in",
+	"refresh_token",
+	"created_at",
+	"id",
+];
+
+const dataObj = {};
+const dataUrl = "http://localhost:7777";
+
+items.forEach((item) => (dataObj[[item]] = sessionStorage.getItem(item)));
 
 export default function Dashboard() {
+	const [storedData, setStoredData] = useState(dataObj);
+	const [vehicleState, setVehicleState] = useState({});
+	const [loading, setLoading] = useState(true);
+	const [status, setStatus] = useState("");
+	useEffect(() => {
+		if (!storedData.access_token || storedData.access_token === undefined) {
+			console.log('test')
+			setStatus("loading");
+			authenticateUser();
+		}
+		if (!storedData.id) {
+			setStatus("loading");
+			storeVehicleId(storedData.access_token);
+		}
+		retrieveVehicleState(storedData.access_token);
+		setStatus("");
+	}, [storedData]);
+
+	const authenticateUser = () => {
+		axios
+			.get(dataUrl)
+			.then((response) => {
+				setStoredData(response.data);
+				items.forEach(
+					(item) =>
+						item !== "id" &&
+						sessionStorage.setItem([item], response.data[item])
+				);
+			})
+			.catch((e) => console.log(e));
+	};
+
+	const storeVehicleId = (accessToken) => {
+		axios
+			.get(`${dataUrl}/vehicles/`, {
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			})
+			.then((response) => {
+				sessionStorage.setItem("id", response.data);
+				const storedDataClone = { ...storedData };
+				storedDataClone.id = response.data;
+				setStoredData(storedDataClone);
+				retrieveVehicleState(accessToken);
+			})
+			.catch((e) => console.log(e));
+	};
+
+	const retrieveVehicleState = (accessToken) => {
+		axios
+			.get(`${dataUrl}/vehicle/${storedData.id}/state/`, {
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			})
+			.then((res) => {
+				setVehicleState(res.data);
+				setLoading(false);
+			})
+			.catch((e) => console.log(e));
+	};
+
+	const data = {
+		battery_level: vehicleState?.charge_state?.battery_level,
+		battery_range: vehicleState?.charge_state?.battery_range,
+		charging_state: vehicleState?.charge_state?.charging_state,
+		charge_limit_soc: vehicleState?.charge_state?.charge_limit_soc,
+		inside_temp: vehicleState?.climate_state?.inside_temp,
+		is_climate_on: vehicleState?.climate_state?.is_climate_on,
+		outside_temp: vehicleState?.climate_state?.outside_temp,
+		fan_status: vehicleState?.climate_state?.fan_status,
+	};
+
+	const metrics = [
+		[
+			"battery_level",
+			"battery_range",
+			"charging_state",
+			"charge_limit_soc",
+		],
+		["inside_temp", "is_climate_on", "outside_temp", "fan_status"],
+	];
 
 	return (
-		<div>
-			<h1>Dashboard</h1>
-		</div>
+		<>
+			{status === "loading" && <>Fetching data...</>}
+			{metrics.map((stats, index) => (
+				<div className="metrics" key={index}>
+					{stats.map((metric) => (
+						<DataCard
+							key={metric}
+							label={metric}
+							metric={data[metric]}
+						/>
+					))}
+				</div>
+			))}
+		</>
 	);
 }

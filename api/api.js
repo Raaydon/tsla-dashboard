@@ -1,12 +1,13 @@
 const express = require('express')
 const axios = require('axios')
-require('dotenv').config()
+const dotenv = require('dotenv');
+dotenv.config();
 
-const { email, password } = process.env
+const email = process.env.REACT_APP_EMAIL
+const password = process.env.REACT_APP_PASSWORD
 
 const app = express()
 const port = 7777
-const teslaLogin = require('../tsla').teslaLogin
 const baseUrl = 'https://owner-api.teslamotors.com'
 
 app.use(function (req, res, next) {
@@ -54,10 +55,14 @@ app.get('/vehicle/:id/state/', async (req, res) => {
 });
 
 app.get('/', async (req, res) => {
-    const accessToken = await teslaLogin(email, password);
+    var accessToken = process.env.REACT_APP_TOKEN
+    if (accessToken === undefined) {
+        accessToken = await require('./tsla').teslaLogin(email, password);
+    }
+    console.log('access token: ', accessToken)
     return res.send(JSON.stringify(accessToken));
 });
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`app listening at http://localhost:${port}`)
 });

@@ -1,6 +1,5 @@
-import "./App.css";
-import React, { useState, useEffect, useRef } from "react";
-
+import "./styles/main.scss";
+import React from "react";
 import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {

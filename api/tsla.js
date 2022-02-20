@@ -3,7 +3,7 @@ util.inspect.defaultOptions.depth = null;
 const crypto = require("crypto");
 const puppeteer = require("puppeteer");
 const axios = require("axios");
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 dotenv.config();
 
 const TESLA_CLIENT_ID =
@@ -107,15 +107,14 @@ const teslaLogin = async function (
 		});
 		// const data = await page.evaluate(() => document.querySelector('*').outerHTML);
 		// console.log('full page: ',data);
-    try {
-      await page.type('.sign-in-form input[name="credential"]', password);
-      await page.click("#form-submit-continue");
-      await navigationPromise;
-    } catch(e) {
-      console.log('need 2fa');
+		try {
+			await page.type('.sign-in-form input[name="credential"]', password);
+			await page.click("#form-submit-continue");
+			await navigationPromise;
+		} catch (e) {
+			console.log("need 2fa");
 			await page.waitForTimeout(20000);
-    }
-
+		}
 	};
 
 	try {
