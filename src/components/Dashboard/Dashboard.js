@@ -28,6 +28,7 @@ export default function Dashboard() {
 	const [vehicleState, setVehicleState] = useState({});
 	const [loading, setLoading] = useState(true);
 	const [status, setStatus] = useState("");
+	const [vehicleData, setVehicleData] = useState({});
 	useEffect(() => {
 		if (!storedData.access_token || storedData.access_token === undefined) {
 			setStatus("loading");
@@ -107,14 +108,14 @@ export default function Dashboard() {
 	}
 
 	const data = {
-		battery_level: vehicleState?.charge_state?.battery_level,
-		battery_range: vehicleState?.charge_state?.battery_range,
-		charging_state: vehicleState?.charge_state?.charging_state,
-		charge_limit_soc: vehicleState?.charge_state?.charge_limit_soc,
-		inside_temp: vehicleState?.climate_state?.inside_temp,
-		is_climate_on: vehicleState?.climate_state?.is_climate_on,
-		outside_temp: vehicleState?.climate_state?.outside_temp,
-		fan_status: vehicleState?.climate_state?.fan_status,
+		battery_level: vehicleData?.charge_state?.battery_level,
+		battery_range: vehicleData?.charge_state?.battery_range,
+		charging_state: vehicleData?.charge_state?.charging_state,
+		charge_limit_soc: vehicleData?.charge_state?.charge_limit_soc,
+		inside_temp: vehicleData?.climate_state?.inside_temp,
+		is_climate_on: vehicleData?.climate_state?.is_climate_on,
+		outside_temp: vehicleData?.climate_state?.outside_temp,
+		fan_status: vehicleData?.climate_state?.fan_status,
 	};
 
 	const metrics = [
