@@ -105,21 +105,21 @@ app.get("/", async (req, res) => {
 	if (accessToken === undefined) {
 		accessToken = await tsla.teslaLogin(email, password);
 	}
-	if (awake === false) {
-		let url = `${baseUrl}/api/1/vehicles`;
-		axios
-			.get(url, {
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-				},
-			})
-			.then((response) => {
-				res.send(JSON.stringify(response?.data?.response));
-			})
-            .catch((err) => {
-				console.log(err);
-			})
-	}
+	// if (awake === false) {
+	// 	let url = `${baseUrl}/api/1/vehicles`;
+	// 	axios
+	// 		.get(url, {
+	// 			headers: {
+	// 				Authorization: `Bearer ${accessToken}`,
+	// 			},
+	// 		})
+	// 		.then((response) => {
+	// 			res.send(JSON.stringify(response?.data?.response));
+	// 		})
+    //         .catch((err) => {
+	// 			console.log(err);
+	// 		})
+	// }
 	return res.send(JSON.stringify(accessToken));
 });
 
