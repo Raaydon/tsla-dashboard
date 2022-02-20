@@ -46,6 +46,7 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 	if (!accessToken || !id) {
 		res.sendStatus(403);
 	} else {
+        console.log(id)
 		axios
 			.post(url, {
 				headers: {
