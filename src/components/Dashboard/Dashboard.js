@@ -12,7 +12,7 @@ const items = [
 ];
 
 const dataObj = {};
-const dataUrl = "http://localhost:7777";
+const serverUrl = "http://localhost:7777";
 
 items.forEach((item) => {
 	var x = localStorage.getItem(item);
@@ -44,7 +44,7 @@ export default function Dashboard() {
 
 	function authenticateUser() {
 		axios
-			.get(dataUrl)
+			.get(serverUrl)
 			.then((response) => {
 				const tempStoredData = storedData;
 				tempStoredData.access_token = response;
@@ -60,7 +60,7 @@ export default function Dashboard() {
 
 	function storeVehicleId(accessToken) {
 		axios
-			.get(`${dataUrl}/vehicles`, {
+			.get(`${serverUrl}/vehicles`, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
 				},
@@ -78,7 +78,7 @@ export default function Dashboard() {
 
 	function retrieveVehicleState(accessToken) {
 		axios
-			.get(`${dataUrl}/vehicle/${storedData.id}/state/`, {
+			.get(`${serverUrl}/vehicle/${storedData.id}/state/`, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
 				},
