@@ -16,8 +16,11 @@ const dataUrl = "http://localhost:7777";
 
 items.forEach((item) => {
 	var x = sessionStorage.getItem(item)
-	if (x === 'undefined')
-	dataObj[item]
+	if (x === 'undefined') {
+		dataObj[item] = undefined
+	} else {
+		dataObj[item] = x
+	}
 });
 
 export default function Dashboard() {
