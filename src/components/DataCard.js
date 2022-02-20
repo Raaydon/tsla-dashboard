@@ -9,6 +9,7 @@ const DataCard = (props) => {
 			return metric ? <span>Yes</span> : <span>No</span>;
 		}
 	};
+	console.log(props)
 	return (
 		<Card style={{ textAlign: "center" }}>
 			<p>{props.label}</p>
