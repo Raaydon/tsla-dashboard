@@ -16,28 +16,29 @@ const baseUrl = "https://owner-api.teslamotors.com";
 var awake = false;
 function checkAwake(id) {
 	let url = `${baseUrl}/api/1/vehicles`;
-    let wakeurl = `${baseUrl}/api/1/vehicles/${id}/wake_up`;
+	let wakeurl = `${baseUrl}/api/1/vehicles/${id}/wake_up`;
 	while (awake === false) {
-        // eslint-disable-next-line no-loop-func
-        setTimeout(() => {
-            axios
-			.get(url, {
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-				},
-			})
-			.catch((err) => {
-				console.log(err);
-                axios.post(wakeurl, {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                })
-			})
-			.then((res) => {
-				awake = true;
-			});
-        }, 10000);
+		// eslint-disable-next-line no-loop-func
+		setTimeout(() => {
+			axios
+				.get(url, {
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
+				})
+				.catch((err) => {
+					console.log(err);
+					axios
+						.post(wakeurl, {
+							headers: {
+								Authorization: `Bearer ${accessToken}`,
+							},
+						})
+						.then((res) => {
+							awake = true;
+						});
+				});
+		}, 10000);
 	}
 }
 
