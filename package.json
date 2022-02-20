@@ -8,7 +8,6 @@
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.3.1",
-    "@socket.io/admin-ui": "^0.2.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -34,10 +33,6 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "sass": "^1.49.7",
-    "socket.io": "^4.4.1",
-    "socket.io-client": "^4.4.1",
-    "teslajs": "^4.10.0",
-    "typescript": "^4.5.4",
     "web-vitals": "^2.1.2"
   },
   "scripts": {
