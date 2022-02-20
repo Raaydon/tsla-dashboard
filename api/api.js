@@ -27,7 +27,7 @@ app.get("/vehicles", async (req, res) => {
 		res.sendStatus(403);
 	} else {
 		axios
-			.post(`${baseUrl}/api/1/vehicles`, {
+			.get(`${baseUrl}/api/1/vehicles`, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
 				},
@@ -49,7 +49,7 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 	} else {
         console.log(id)
 		axios
-			.post(url, {
+			.get(url, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
 				},
