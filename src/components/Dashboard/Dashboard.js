@@ -15,11 +15,11 @@ const dataObj = {};
 const dataUrl = "http://localhost:7777";
 
 items.forEach((item) => {
-	var x = sessionStorage.getItem(item)
-	if (x === 'undefined') {
-		dataObj[item] = undefined
+	var x = sessionStorage.getItem(item);
+	if (x === "undefined") {
+		dataObj[item] = undefined;
 	} else {
-		dataObj[item] = x
+		dataObj[item] = x;
 	}
 });
 
@@ -56,7 +56,7 @@ export default function Dashboard() {
 				);
 			})
 			.catch((e) => console.log(e));
-	};
+	}
 
 	function storeVehicleId(accessToken) {
 		axios
@@ -73,9 +73,9 @@ export default function Dashboard() {
 				retrieveVehicleState(accessToken);
 			})
 			.catch((e) => console.log(e));
-	};
+	}
 
-	const retrieveVehicleState = (accessToken) => {
+	function retrieveVehicleState(accessToken) {
 		axios
 			.get(`${dataUrl}/vehicle/${storedData.id}/state/`, {
 				headers: {
