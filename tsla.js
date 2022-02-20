@@ -3,6 +3,8 @@ util.inspect.defaultOptions.depth = null;
 const crypto = require("crypto");
 const puppeteer = require("puppeteer");
 const axios = require("axios");
+const dotenv = require('dotenv');
+dotenv.config();
 
 const TESLA_CLIENT_ID =
 	"81527cff06843c8634fdc09e8ac0abefb46ac849f38fe1e431c2ef2106796384";

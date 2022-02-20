@@ -19,6 +19,7 @@
     "axios": "^0.26.0",
     "base64url": "^3.0.1",
     "connect": "^3.7.0",
+    "dotenv": "^16.0.0",
     "express-rate-limit": "^6.2.0",
     "firebase": "^9.6.5",
     "follow-redirects": "^1.14.7",
