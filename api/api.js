@@ -2,6 +2,7 @@ const express = require('express')
 const axios = require('axios')
 const dotenv = require('dotenv');
 dotenv.config();
+const tsla = require('./tsla')
 
 const email = process.env.REACT_APP_EMAIL
 const password = process.env.REACT_APP_PASSWORD
@@ -58,7 +59,7 @@ app.get('/', async (req, res) => {
     try {
         var accessToken = process.env.REACT_APP_TOKEN
         if (accessToken === undefined) {
-            accessToken = await require('./tsla').teslaLogin(email, password);
+            accessToken = await .teslaLogin(email, password);
         }
         console.log('access token: ', accessToken)
         return res.send(JSON.stringify(accessToken));
