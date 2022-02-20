@@ -38,6 +38,7 @@ export default function Dashboard() {
 		axios
 			.get(dataUrl)
 			.then((response) => {
+				console.log('response: ',response)
 				setStoredData(response.data);
 				items.forEach(
 					(item) =>
