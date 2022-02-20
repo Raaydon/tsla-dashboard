@@ -234,7 +234,5 @@ const teslaLogin = async function (
 		throw e;
 	}
 };
-const accessToken = teslaLogin();
-console.log(accessToken);
 
 module.exports = { teslaLogin };
