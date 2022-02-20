@@ -29,7 +29,6 @@ export default function Dashboard() {
 	const [loading, setLoading] = useState(true);
 	const [status, setStatus] = useState("");
 	useEffect(() => {
-		console.log("stored data: ", storedData);
 		if (!storedData.access_token || storedData.access_token === undefined) {
 			setStatus("loading");
 			authenticateUser();
