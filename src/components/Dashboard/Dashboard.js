@@ -39,6 +39,7 @@ export default function Dashboard() {
 			storeVehicleId(storedData.access_token);
 		}
 		retrieveVehicleState(storedData.access_token);
+		retrieveVehicleData(storedData.access_token);
 		setStatus("");
 	}, [storedData]);
 
@@ -76,6 +77,7 @@ export default function Dashboard() {
 				storedDataClone.id = response.data;
 				setStoredData(storedDataClone);
 				retrieveVehicleState(accessToken);
+				retrieveVehicleData(accessToken);
 			})
 			.catch((e) => console.log(e));
 	}
