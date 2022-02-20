@@ -13,22 +13,19 @@ const app = express();
 const port = 5000;
 const baseUrl = "https://owner-api.teslamotors.com";
 
-
 var awake = false;
 function checkAwake() {
-    if (awake === false) {
-		let url = `${baseUrl}/api/1/vehicles`;
-		axios
-			.get(url, {
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-				},
-			})
-            .catch((err) => {
-				console.log(err);
-			})
-	}
-    awake = true
+	let url = `${baseUrl}/api/1/vehicles`;
+	axios
+		.get(url, {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+	awake = true;
 }
 checkAwake();
 
@@ -83,9 +80,9 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 			.then((response) => {
 				res.send(JSON.stringify(response?.data?.response));
 			})
-            .catch((err) => {
+			.catch((err) => {
 				console.log(err);
-			})
+			});
 	}
 });
 
@@ -112,9 +109,9 @@ app.get("/vehicle/:id/data/", async (req, res) => {
 			.then((response) => {
 				res.send(JSON.stringify(response?.data?.response));
 			})
-            .catch((err) => {
+			.catch((err) => {
 				console.log(err);
-			})
+			});
 	}
 });
 
