@@ -25,17 +25,15 @@ app.get("/vehicles", async (req, res) => {
 	if (!accessToken) {
 		res.sendStatus(403);
 	} else {
-        try {
-            const response = await axios.get(`${baseUrl}/api/1/vehicles`, {
+            axios.post(`${baseUrl}/api/1/vehicles`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
-            });
-            const id = response?.data?.response[0]?.id;
+            }).then((response) => {
+                const id = response?.data?.response[0]?.id;
             res.send(JSON.stringify(id));
-        }   catch (e) {
-            console.log('error')
-        }
+            });
+            
 		
 	}
 });
@@ -46,7 +44,7 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 		url = `${baseUrl}/api/1/vehicles/${id}`;
 
 	if (!accessToken || !id) res.sendStatus(403);
-	const response = await axios.get(url, {
+	const response = await axios.post(url, {
 		headers: {
 			Authorization: `Bearer ${accessToken}`,
 		},
