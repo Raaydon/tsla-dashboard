@@ -87,7 +87,7 @@ app.get("/", async (req, res) => {
 	if (accessToken === undefined) {
 		accessToken = await tsla.teslaLogin(email, password);
 	}
-	console.log("access token: ", accessToken);
+	
 	return res.send(JSON.stringify(accessToken));
 });
 
