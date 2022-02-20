@@ -12,7 +12,7 @@ const items = [
 ];
 
 const dataObj = {};
-const serverUrl = "http://localhost:5000";
+const serverUrl = "http://localhost:7777";
 
 items.forEach((item) => {
 	var x = localStorage.getItem(item);
