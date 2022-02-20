@@ -44,7 +44,7 @@ export default function Dashboard() {
 	useEffect(() => {
 		console.log(vehicleState);
 	}, [vehicleState]);
-	
+
 	function authenticateUser() {
 		axios
 			.get(serverUrl)
@@ -89,6 +89,19 @@ export default function Dashboard() {
 			.then((res) => {
 				setVehicleState(res.data);
 				setLoading(false);
+			})
+			.catch((e) => console.log(e));
+	}
+
+	function retrieveVehicleData(accessToken) {
+		axios
+			.get(`${serverUrl}/vehicle/${storedData.id}/data/`, {
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			})
+			.then((res) => {
+				console.log(res);
 			})
 			.catch((e) => console.log(e));
 	}
