@@ -27,7 +27,6 @@ function checkAwake() {
 		});
 	awake = true;
 }
-checkAwake();
 
 app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", `*`);
@@ -111,6 +110,8 @@ app.get("/vehicle/:id/data/", async (req, res) => {
 			})
 			.catch((err) => {
 				console.log(err);
+checkAwake();
+
 			});
 	}
 });
