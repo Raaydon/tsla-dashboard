@@ -25,9 +25,9 @@ app.use(function (req, res, next) {
 
 app.get("/vehicles", async (req, res) => {
 	const accessToken = req.headers.authorization.replace(/^Bearer /, "");
-	if ((!accessToken || accessToken === null || accessToken === "null") && awake === true) {
+	if (!accessToken || accessToken === null || accessToken === "null") {
 		res.sendStatus(403);
-	} else {
+	} else if (awake === true) {
 		axios
 			.get(`${baseUrl}/api/1/vehicles`, {
 				headers: {
@@ -48,7 +48,7 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 
 	if (!accessToken || !id || id === null || id === 'null' || accessToken === null) {
 		res.sendStatus(403);
-	} else {
+	} else if (awake === true) {
         console.log('card id: ',id)
 		axios
 			.get(url, {
@@ -69,7 +69,7 @@ app.get("/vehicle/:id/data/", async (req, res) => {
 
 	if (!accessToken || !id || id === null || id === 'null' || accessToken === null) {
 		res.sendStatus(403);
-	} else {
+	} else if (awake === true) {
 		axios
 			.get(url, {
 				headers: {
