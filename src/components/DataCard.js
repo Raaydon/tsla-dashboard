@@ -18,7 +18,7 @@ const DataCard = (props) => {
 			</>
 		);
 	};
-	return <Card style={{ textAlign: "center" }}></Card>;
+	return <Card content={cardContent}></Card>;
 };
 
 export default DataCard;
