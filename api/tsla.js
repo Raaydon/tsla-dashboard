@@ -97,6 +97,7 @@ const teslaLogin = async function (
 				throw new Error("Cannot automatically solve image picker!");
 			}
 		}
+		await page.waitForTimeout(5000);
 	};
 
 	const submitForm = async () => {
