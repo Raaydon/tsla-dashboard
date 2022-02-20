@@ -65,7 +65,10 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 			})
 			.then((response) => {
 				res.send(JSON.stringify(response?.data?.response));
-			});
+			})
+            .catch((err) => {
+				console.log(err);
+			})
 	}
 });
 
@@ -91,7 +94,10 @@ app.get("/vehicle/:id/data/", async (req, res) => {
 			})
 			.then((response) => {
 				res.send(JSON.stringify(response?.data?.response));
-			});
+			})
+            .catch((err) => {
+				console.log(err);
+			})
 	}
 });
 
