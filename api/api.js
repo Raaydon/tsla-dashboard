@@ -53,6 +53,7 @@ app.use(function (req, res, next) {
 
 app.get("/vehicles", async (req, res) => {
 	const accessToken = req.headers.authorization.replace(/^Bearer /, "");
+    var id
 	if (!accessToken || accessToken === null || accessToken === "null") {
 		res.sendStatus(403);
 	} else if (awake === true) {
@@ -63,12 +64,12 @@ app.get("/vehicles", async (req, res) => {
 				},
 			})
 			.then((response) => {
-				const id = response?.data?.response[0]?.id;
+				id = response?.data?.response[0]?.id;
 				res.send(JSON.stringify(id));
 			})
 			.catch((err) => {
 				console.log(err);
-				checkAwake();
+				checkAwake(id);
 			});
 	}
 });
@@ -99,7 +100,7 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 			})
 			.catch((err) => {
 				console.log(err);
-				checkAwake();
+				checkAwake(id);
 			});
 	}
 });
@@ -129,7 +130,7 @@ app.get("/vehicle/:id/data/", async (req, res) => {
 			})
 			.catch((err) => {
 				console.log(err);
-				checkAwake();
+				checkAwake(id);
 			});
 	}
 });
