@@ -49,7 +49,6 @@ export default function Dashboard() {
 				);
 			})
 			.catch((e) => console.log(e));
-		console.log('worked')
 	};
 
 	const storeVehicleId = (accessToken) => {
