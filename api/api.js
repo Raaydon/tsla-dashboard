@@ -25,16 +25,16 @@ app.get("/vehicles", async (req, res) => {
 	if (!accessToken) {
 		res.sendStatus(403);
 	} else {
-            axios.post(`${baseUrl}/api/1/vehicles`, {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                },
-            }).then((response) => {
-                const id = response?.data?.response[0]?.id;
-            res.send(JSON.stringify(id));
-            });
-            
-		
+		axios
+			.post(`${baseUrl}/api/1/vehicles`, {
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			})
+			.then((response) => {
+				const id = response?.data?.response[0]?.id;
+				res.send(JSON.stringify(id));
+			});
 	}
 });
 
