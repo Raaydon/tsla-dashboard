@@ -55,12 +55,17 @@ app.get('/vehicle/:id/state/', async (req, res) => {
 });
 
 app.get('/', async (req, res) => {
-    var accessToken = process.env.REACT_APP_TOKEN
-    if (accessToken === undefined) {
-        accessToken = await require('./tsla').teslaLogin(email, password);
+    try {
+        var accessToken = process.env.REACT_APP_TOKEN
+        if (accessToken === undefined) {
+            accessToken = await require('./tsla').teslaLogin(email, password);
+        }
+        console.log('access token: ', accessToken)
+        return res.send(JSON.stringify(accessToken));
+    } catch (error) {
+        console.log('error: ', error)
     }
-    console.log('access token: ', accessToken)
-    return res.send(JSON.stringify(accessToken));
+    
 });
 
 app.listen(port, () => {
