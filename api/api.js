@@ -102,7 +102,6 @@ app.get("/", async (req, res) => {
 	if (awake === false) {
 		let url = `${baseUrl}/api/1/vehicles`;
 		axios
-
 			.get(url, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
