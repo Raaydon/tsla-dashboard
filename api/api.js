@@ -8,16 +8,15 @@ const { access } = require("fs");
 const email = process.env.REACT_APP_EMAIL;
 const password = process.env.REACT_APP_PASSWORD;
 var accessToken = process.env.REACT_APP_TOKEN;
-var idGlobal
 
 const app = express();
 const port = 5000;
 const baseUrl = "https://owner-api.teslamotors.com";
 
 var awake = false;
-function checkAwake() {
+function checkAwake(id) {
 	let url = `${baseUrl}/api/1/vehicles`;
-    let wakeurl = `${baseUrl}/api/1/vehicles/${idGlobal}/wake_up`;
+    let wakeurl = `${baseUrl}/api/1/vehicles/${id}/wake_up`;
 	while (awake === false) {
         // eslint-disable-next-line no-loop-func
         setTimeout(() => {
