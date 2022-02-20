@@ -17,6 +17,7 @@ var awake = false;
 function checkAwake() {
 	let url = `${baseUrl}/api/1/vehicles`;
 	while (awake === false) {
+        // eslint-disable-next-line no-loop-func
         setTimeout(() => {
             axios
 			.get(url, {
