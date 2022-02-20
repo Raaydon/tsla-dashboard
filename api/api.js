@@ -24,8 +24,10 @@ function checkAwake() {
 		})
 		.catch((err) => {
 			console.log(err);
+		})
+		.then((res) => {
+			awake = true;
 		});
-	awake = true;
 }
 
 app.use(function (req, res, next) {
@@ -52,7 +54,7 @@ app.get("/vehicles", async (req, res) => {
 				const id = response?.data?.response[0]?.id;
 				res.send(JSON.stringify(id));
 			})
-            .catch((err) => {
+			.catch((err) => {
 				console.log(err);
 				checkAwake();
 			});
@@ -124,7 +126,7 @@ app.get("/", async (req, res) => {
 	if (accessToken === undefined) {
 		accessToken = await tsla.teslaLogin(email, password);
 	}
-    checkAwake()
+	checkAwake();
 	return res.send(JSON.stringify(accessToken));
 });
 
