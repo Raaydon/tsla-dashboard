@@ -40,9 +40,11 @@ export default function Dashboard() {
 		retrieveVehicleState(storedData.access_token);
 		setStatus("");
 	}, [storedData]);
+
 	useEffect(() => {
-		console.log(vehicleState)
-	}, [vehicleState])
+		console.log(vehicleState);
+	}, [vehicleState]);
+	
 	function authenticateUser() {
 		axios
 			.get(serverUrl)
