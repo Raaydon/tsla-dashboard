@@ -16,6 +16,7 @@ const baseUrl = "https://owner-api.teslamotors.com";
 var awake = false;
 function checkAwake() {
 	let url = `${baseUrl}/api/1/vehicles`;
+    let wakeurl = `${baseUrl}/api/1/vehicles/${id}/wake_up`;
 	while (awake === false) {
         // eslint-disable-next-line no-loop-func
         setTimeout(() => {
@@ -27,6 +28,11 @@ function checkAwake() {
 			})
 			.catch((err) => {
 				console.log(err);
+                axios.post(url, {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                })
 			})
 			.then((res) => {
 				awake = true;
