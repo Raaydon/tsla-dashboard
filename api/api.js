@@ -12,6 +12,8 @@ const app = express();
 const port = 5000;
 const baseUrl = "https://owner-api.teslamotors.com";
 
+var awake = false
+
 app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", `*`);
 	res.header(
