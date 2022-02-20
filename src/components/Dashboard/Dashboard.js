@@ -66,7 +66,7 @@ export default function Dashboard() {
 				},
 			})
 			.then((response) => {
-				console.log(response)
+				console.log(response);
 				sessionStorage.setItem("id", response.data);
 				const storedDataClone = { ...storedData };
 				storedDataClone.id = response.data;
@@ -88,7 +88,7 @@ export default function Dashboard() {
 				setLoading(false);
 			})
 			.catch((e) => console.log(e));
-	};
+	}
 
 	const data = {
 		battery_level: vehicleState?.charge_state?.battery_level,
