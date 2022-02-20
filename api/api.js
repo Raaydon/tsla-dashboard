@@ -25,13 +25,18 @@ app.get("/vehicles", async (req, res) => {
 	if (!accessToken) {
 		res.sendStatus(403);
 	} else {
-		const response = await axios.post(`${baseUrl}/api/1/vehicles`, {
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-			},
-		});
-		const id = response?.data?.response[0]?.id;
-		res.send(JSON.stringify(id));
+        try {
+            const response = await axios.post(`${baseUrl}/api/1/vehicles`, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            });
+            const id = response?.data?.response[0]?.id;
+            res.send(JSON.stringify(id));
+        }   catch (e) {
+            console.log('error')
+        }
+		
 	}
 });
 
