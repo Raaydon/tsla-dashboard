@@ -10,15 +10,14 @@ const DataCard = (props) => {
 		}
 	};
 	console.log(props);
-	const cardContent = () => {
-		return (
-			<>
+	return (
+		<div className="card">
+			<div className="card__content">
 				<p>{props.label}</p>
 				<p>{renderMetric(props.metric)}</p>
-			</>
-		);
-	};
-	return <div className="card" content={cardContent}></div>;
+			</div>
+		</div>
+	);
 };
 
 export default DataCard;
