@@ -13,7 +13,26 @@ const app = express();
 const port = 5000;
 const baseUrl = "https://owner-api.teslamotors.com";
 
+function checkAwake() {
+    if (awake === false) {
+		let url = `${baseUrl}/api/1/vehicles`;
+		axios
+			.get(url, {
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			})
+			.then((response) => {
+				res.send(JSON.stringify(response?.data?.response));
+			})
+            .catch((err) => {
+				console.log(err);
+			})
+	}
+    awake = true
+}
 var awake = false;
+checkAwake();
 
 app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", `*`);
@@ -105,22 +124,7 @@ app.get("/", async (req, res) => {
 	if (accessToken === undefined) {
 		accessToken = await tsla.teslaLogin(email, password);
 	}
-	if (awake === false) {
-		let url = `${baseUrl}/api/1/vehicles`;
-		axios
-			.get(url, {
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-				},
-			})
-			.then((response) => {
-				res.send(JSON.stringify(response?.data?.response));
-			})
-            .catch((err) => {
-				console.log(err);
-			})
-	}
-    awake = true
+
 	return res.send(JSON.stringify(accessToken));
 });
 
