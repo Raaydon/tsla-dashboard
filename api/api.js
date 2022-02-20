@@ -39,7 +39,6 @@ app.get('/vehicle/', async (req, res) => {
         });
         const id = response?.data?.response[0]?.id;
         res.send(JSON.stringify(id));
-    });
     } catch (error) {
         console.log('error at vehicle');
     }
