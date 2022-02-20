@@ -105,7 +105,7 @@ export default function Dashboard() {
 			})
 			.then((res) => {
 				console.log(res);
-				// setVehicleData(res.data);
+				setVehicleData(res.data);
 			})
 			.catch((e) => console.log(e));
 	}
