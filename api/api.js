@@ -17,7 +17,8 @@ var awake = false;
 function checkAwake() {
 	let url = `${baseUrl}/api/1/vehicles`;
 	while (awake === false) {
-		axios
+        setTimeout(() => {
+            axios
 			.get(url, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
@@ -29,6 +30,7 @@ function checkAwake() {
 			.then((res) => {
 				awake = true;
 			});
+        }, 2000);
 	}
 }
 
