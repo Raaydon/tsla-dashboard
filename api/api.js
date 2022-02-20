@@ -96,7 +96,6 @@ app.get("/vehicle/:id/data/", async (req, res) => {
 });
 
 app.get("/", async (req, res) => {
-	accessToken = process.env.REACT_APP_TOKEN;
 	if (accessToken === undefined) {
 		accessToken = await tsla.teslaLogin(email, password);
 	}
