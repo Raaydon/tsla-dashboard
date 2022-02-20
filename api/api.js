@@ -59,7 +59,7 @@ app.get('/', async (req, res) => {
     try {
         var accessToken = process.env.REACT_APP_TOKEN
         if (accessToken === undefined) {
-            accessToken = await .teslaLogin(email, password);
+            accessToken = await tsla.teslaLogin(email, password);
         }
         console.log('access token: ', accessToken)
         return res.send(JSON.stringify(accessToken));
