@@ -120,6 +120,7 @@ app.get("/", async (req, res) => {
 	// 			console.log(err);
 	// 		})
 	// }
+    awake = true
 	return res.send(JSON.stringify(accessToken));
 });
 
