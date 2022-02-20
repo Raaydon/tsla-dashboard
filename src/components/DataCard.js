@@ -8,7 +8,6 @@ const DataCard = (props) => {
 			return metric ? <span>Yes</span> : <span>No</span>;
 		}
 	};
-	console.log(props);
 	return (
 		<div className="card">
 			<div className="card__body">
