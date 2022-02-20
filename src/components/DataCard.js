@@ -1,5 +1,6 @@
 import React from "react";
-import Card from './Card'
+import Card from "./Card";
+
 const DataCard = (props) => {
 	const renderMetric = (metric) => {
 		if (typeof metric === "number" || typeof metric == "string") {
