@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import DataCard from "../DataCard";
+import DataCard from '../DataCard'
 
 const items = [
 	"access_token",
@@ -12,25 +12,18 @@ const items = [
 ];
 
 const dataObj = {};
-const serverUrl = "http://localhost:7777";
+const dataUrl = "http://localhost:7777";
 
-items.forEach((item) => {
-	var x = localStorage.getItem(item);
-	if (x === "undefined") {
-		dataObj[item] = undefined;
-	} else {
-		dataObj[item] = x;
-	}
-});
+items.forEach((item) => (dataObj[[item]] = sessionStorage.getItem(item)));
 
 export default function Dashboard() {
 	const [storedData, setStoredData] = useState(dataObj);
 	const [vehicleState, setVehicleState] = useState({});
 	const [loading, setLoading] = useState(true);
 	const [status, setStatus] = useState("");
-	const [vehicleData, setVehicleData] = useState({});
 	useEffect(() => {
 		if (!storedData.access_token || storedData.access_token === undefined) {
+			console.log('test')
 			setStatus("loading");
 			authenticateUser();
 		}
@@ -39,52 +32,43 @@ export default function Dashboard() {
 			storeVehicleId(storedData.access_token);
 		}
 		retrieveVehicleState(storedData.access_token);
-		retrieveVehicleData(storedData.access_token);
 		setStatus("");
 	}, [storedData]);
 
-	useEffect(() => {
-		console.log(vehicleState);
-	}, [vehicleState]);
-
-	function authenticateUser() {
+	const authenticateUser = () => {
 		axios
-			.get(serverUrl)
+			.get(dataUrl)
 			.then((response) => {
-				const tempStoredData = storedData;
-				tempStoredData.access_token = response;
-				setStoredData(tempStoredData); // set stored data to token
+				setStoredData(response.data);
 				items.forEach(
 					(item) =>
 						item !== "id" &&
-						localStorage.setItem(item, response.data[item])
+						sessionStorage.setItem([item], response.data[item])
 				);
 			})
 			.catch((e) => console.log(e));
-	}
+	};
 
-	function storeVehicleId(accessToken) {
+	const storeVehicleId = (accessToken) => {
 		axios
-			.get(`${serverUrl}/vehicles`, {
+			.get(`${dataUrl}/vehicles/`, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
 				},
 			})
 			.then((response) => {
-				console.log(response);
 				sessionStorage.setItem("id", response.data);
 				const storedDataClone = { ...storedData };
 				storedDataClone.id = response.data;
 				setStoredData(storedDataClone);
 				retrieveVehicleState(accessToken);
-				retrieveVehicleData(accessToken);
 			})
 			.catch((e) => console.log(e));
-	}
+	};
 
-	function retrieveVehicleState(accessToken) {
+	const retrieveVehicleState = (accessToken) => {
 		axios
-			.get(`${serverUrl}/vehicle/${storedData.id}/state/`, {
+			.get(`${dataUrl}/vehicle/${storedData.id}/state/`, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
 				},
@@ -94,31 +78,17 @@ export default function Dashboard() {
 				setLoading(false);
 			})
 			.catch((e) => console.log(e));
-	}
-
-	function retrieveVehicleData(accessToken) {
-		axios
-			.get(`${serverUrl}/vehicle/${storedData.id}/data/`, {
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-				},
-			})
-			.then((res) => {
-				console.log(res);
-				setVehicleData(res.data);
-			})
-			.catch((e) => console.log(e));
-	}
+	};
 
 	const data = {
-		battery_level: vehicleData?.charge_state?.battery_level,
-		battery_range: vehicleData?.charge_state?.battery_range,
-		charging_state: vehicleData?.charge_state?.charging_state,
-		charge_limit_soc: vehicleData?.charge_state?.charge_limit_soc,
-		inside_temp: vehicleData?.climate_state?.inside_temp,
-		is_climate_on: vehicleData?.climate_state?.is_climate_on,
-		outside_temp: vehicleData?.climate_state?.outside_temp,
-		fan_status: vehicleData?.climate_state?.fan_status,
+		battery_level: vehicleState?.charge_state?.battery_level,
+		battery_range: vehicleState?.charge_state?.battery_range,
+		charging_state: vehicleState?.charge_state?.charging_state,
+		charge_limit_soc: vehicleState?.charge_state?.charge_limit_soc,
+		inside_temp: vehicleState?.climate_state?.inside_temp,
+		is_climate_on: vehicleState?.climate_state?.is_climate_on,
+		outside_temp: vehicleState?.climate_state?.outside_temp,
+		fan_status: vehicleState?.climate_state?.fan_status,
 	};
 
 	const metrics = [
