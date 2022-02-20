@@ -30,7 +30,7 @@ function checkAwake() {
 			.then((res) => {
 				awake = true;
 			});
-        }, 2000);
+        }, 5000);
 	}
 }
 
