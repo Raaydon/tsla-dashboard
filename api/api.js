@@ -51,6 +51,10 @@ app.get("/vehicles", async (req, res) => {
 			.then((response) => {
 				const id = response?.data?.response[0]?.id;
 				res.send(JSON.stringify(id));
+			})
+            .catch((err) => {
+				console.log(err);
+				checkAwake();
 			});
 	}
 });
@@ -81,6 +85,7 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 			})
 			.catch((err) => {
 				console.log(err);
+				checkAwake();
 			});
 	}
 });
@@ -110,8 +115,7 @@ app.get("/vehicle/:id/data/", async (req, res) => {
 			})
 			.catch((err) => {
 				console.log(err);
-checkAwake();
-
+				checkAwake();
 			});
 	}
 });
