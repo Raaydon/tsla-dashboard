@@ -11,7 +11,7 @@ const DataCard = (props) => {
 	console.log(props);
 	return (
 		<div className="card">
-			<div className="card__content">
+			<div className="card__body">
 				<p>{props.label}</p>
 				<p>{renderMetric(props.metric)}</p>
 			</div>
