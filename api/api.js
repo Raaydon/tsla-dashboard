@@ -3,6 +3,7 @@ const axios = require("axios");
 const dotenv = require("dotenv");
 dotenv.config();
 const tsla = require("./tsla");
+const { access } = require("fs");
 
 const email = process.env.REACT_APP_EMAIL;
 const password = process.env.REACT_APP_PASSWORD;
@@ -43,7 +44,7 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 		id = req.params.id,
 		url = `${baseUrl}/api/1/vehicles/${id}`;
 
-	if (!accessToken || !id) {
+	if (!accessToken || !id || id === null || id === 'null' || accessToken === null) {
 		res.sendStatus(403);
 	} else {
         console.log(id)
