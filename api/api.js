@@ -7,7 +7,7 @@ const { access } = require("fs");
 
 const email = process.env.REACT_APP_EMAIL;
 const password = process.env.REACT_APP_PASSWORD;
-
+const acessToken = process.env.REACT_APP_ACCESS_TOKEN;
 const app = express();
 const port = 5000;
 const baseUrl = "https://owner-api.teslamotors.com";
@@ -95,7 +95,7 @@ app.get("/vehicle/:id/data/", async (req, res) => {
 });
 
 app.get("/", async (req, res) => {
-	var accessToken = process.env.REACT_APP_TOKEN;
+	accessToken = process.env.REACT_APP_TOKEN;
 	if (accessToken === undefined) {
 		accessToken = await tsla.teslaLogin(email, password);
 	}
