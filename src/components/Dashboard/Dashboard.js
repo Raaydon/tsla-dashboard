@@ -54,11 +54,11 @@ export default function Dashboard() {
 				const tempStoredData = storedData;
 				tempStoredData.access_token = response;
 				setStoredData(tempStoredData); // set stored data to token
-				items.forEach(
-					(item) =>
-						item !== "id" &&
-						localStorage.setItem(item, response.data[item])
-				);
+				// items.forEach(
+				// 	(item) =>
+				// 		item !== "id" &&
+				// 		localStorage.setItem(item, response.data[item])
+				// );
 			})
 			.catch((e) => console.log(e));
 	}
