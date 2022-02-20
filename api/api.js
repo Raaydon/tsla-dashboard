@@ -107,12 +107,12 @@ app.get("/", async (req, res) => {
 					Authorization: `Bearer ${accessToken}`,
 				},
 			})
-			.catch((err) => {
-				console.log(err.toJSON());
-			})
 			.then((response) => {
 				res.send(JSON.stringify(response?.data?.response));
-			});
+			})
+            .catch((err) => {
+				console.log(err.toJSON());
+			})
 	}
 	return res.send(JSON.stringify(accessToken));
 });
