@@ -1,5 +1,5 @@
 import React from "react";
-import Card from './Card'
+
 const DataCard = (props) => {
 	const renderMetric = (metric) => {
 		if (typeof metric === "number" || typeof metric == "string") {
@@ -9,10 +9,12 @@ const DataCard = (props) => {
 		}
 	};
 	return (
-		<Card style={{ textAlign: "center" }}>
-			<p>{props.label}</p>
-			<p>{renderMetric(props.metric)}</p>
-		</Card>
+		<div className="card">
+			<div className="card__body">
+				<p>{props.label}</p>
+				<p>{renderMetric(props.metric)}</p>
+			</div>
+		</div>
 	);
 };
 

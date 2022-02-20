@@ -88,12 +88,13 @@ const teslaLogin = async function (
 			try {
 				imagePicker = await page.waitForSelector(
 					'iframe[title="recaptcha challenge expires in two minutes"]',
-					{ timeout: 1000 }
+					{ timeout: 10000 }
 				);
 			} catch (e) {
 				console.log(e);
 			}
 			if (imagePicker) {
+				await page.waitForTimeout(10000);
 				throw new Error("Cannot automatically solve image picker!");
 			}
 		}
@@ -234,7 +235,5 @@ const teslaLogin = async function (
 		throw e;
 	}
 };
-const accessToken = teslaLogin();
-console.log(accessToken);
 
 module.exports = { teslaLogin };
