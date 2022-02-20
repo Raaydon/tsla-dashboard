@@ -42,7 +42,7 @@ export default function Dashboard() {
 		setStatus("");
 	}, [storedData]);
 
-	const authenticateUser = () => {
+	function authenticateUser() {
 		axios
 			.get(dataUrl)
 			.then((response) => {
@@ -58,7 +58,7 @@ export default function Dashboard() {
 			.catch((e) => console.log(e));
 	};
 
-	const storeVehicleId = (accessToken) => {
+	function storeVehicleId(accessToken) {
 		axios
 			.get(`${dataUrl}/vehicles/`, {
 				headers: {
