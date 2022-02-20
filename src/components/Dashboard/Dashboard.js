@@ -15,7 +15,7 @@ const dataObj = {};
 const dataUrl = "http://localhost:7777";
 
 items.forEach((item) => {
-	var x = sessionStorage.getItem(item);
+	var x = localStorage.getItem(item);
 	if (x === "undefined") {
 		dataObj[item] = undefined;
 	} else {
