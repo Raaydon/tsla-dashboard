@@ -13,6 +13,8 @@ const app = express();
 const port = 5000;
 const baseUrl = "https://owner-api.teslamotors.com";
 
+
+var awake = false;
 function checkAwake() {
     if (awake === false) {
 		let url = `${baseUrl}/api/1/vehicles`;
@@ -31,7 +33,6 @@ function checkAwake() {
 	}
     awake = true
 }
-var awake = false;
 checkAwake();
 
 app.use(function (req, res, next) {
