@@ -28,7 +28,7 @@ function checkAwake(id) {
 			})
 			.catch((err) => {
 				console.log(err);
-                axios.post(url, {
+                axios.post(wakeurl, {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
                     },
