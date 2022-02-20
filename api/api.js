@@ -15,22 +15,21 @@ const baseUrl = "https://owner-api.teslamotors.com";
 
 var awake = false;
 function checkAwake() {
-    while (awake === false) {
-        axios
-		.get(url, {
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-			},
-		})
-		.catch((err) => {
-			console.log(err);
-		})
-		.then((res) => {
-			awake = true;
-		});
-    }
 	let url = `${baseUrl}/api/1/vehicles`;
-	
+	while (awake === false) {
+		axios
+			.get(url, {
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			})
+			.catch((err) => {
+				console.log(err);
+			})
+			.then((res) => {
+				awake = true;
+			});
+	}
 }
 
 app.use(function (req, res, next) {
