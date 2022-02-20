@@ -52,7 +52,7 @@ export default function Dashboard() {
 				items.forEach(
 					(item) =>
 						item !== "id" &&
-						sessionStorage.setItem(item, response.data[item])
+						localStorage.setItem(item, response.data[item])
 				);
 			})
 			.catch((e) => console.log(e));
