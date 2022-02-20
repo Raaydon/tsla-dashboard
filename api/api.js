@@ -12,7 +12,7 @@ const app = express();
 const port = 5000;
 const baseUrl = "https://owner-api.teslamotors.com";
 
-var awake = false
+var awake = false;
 
 app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", `*`);
@@ -46,10 +46,16 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 		id = req.params.id,
 		url = `${baseUrl}/api/1/vehicles/${id}`;
 
-	if (!accessToken || !id || id === null || id === 'null' || accessToken === null) {
+	if (
+		!accessToken ||
+		!id ||
+		id === null ||
+		id === "null" ||
+		accessToken === null
+	) {
 		res.sendStatus(403);
 	} else if (awake === true) {
-        console.log('card id: ',id)
+		console.log("card id: ", id);
 		axios
 			.get(url, {
 				headers: {
@@ -67,7 +73,13 @@ app.get("/vehicle/:id/data/", async (req, res) => {
 		id = req.params.id,
 		url = `${baseUrl}/api/1/vehicles/${id}/vehicle_data`;
 
-	if (!accessToken || !id || id === null || id === 'null' || accessToken === null) {
+	if (
+		!accessToken ||
+		!id ||
+		id === null ||
+		id === "null" ||
+		accessToken === null
+	) {
 		res.sendStatus(403);
 	} else if (awake === true) {
 		axios
@@ -88,21 +100,21 @@ app.get("/", async (req, res) => {
 		accessToken = await tsla.teslaLogin(email, password);
 	}
 	if (awake === false) {
-        let url = `${baseUrl}/api/1/vehicles`;
-        axios
+		let url = `${baseUrl}/api/1/vehicles`;
+		axios
+
 			.get(url, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
 				},
 			})
+			.catch((err) => {
+				console.log(err.toJSON());
+			})
 			.then((response) => {
 				res.send(JSON.stringify(response?.data?.response));
 			});
-            .catch((err) => {
-                console.log(err.toJSON());
-            })
-
-    }
+	}
 	return res.send(JSON.stringify(accessToken));
 });
 
