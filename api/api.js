@@ -17,25 +17,6 @@ const baseUrl = "https://owner-api.teslamotors.com";
 
 var awake = false;
 async function checkAwake(id) {
-	// let url = `${baseUrl}/api/1/vehicles`;
-	// while (awake === false) {
-	// 	console.log(commands);
-	// 	axios
-	// 		.get(url, {
-	// 			headers: {
-	// 				Authorization: `Bearer ${accessToken}`,
-	// 			},
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 			commands.wake(id).then(() => {
-	// 				awake = true;
-	// 			});
-	// 		})
-	// 		.then((response) => {
-	// 			awake = true;
-	// 		});
-	// }
 	while (awake === false) {
 		const res = await commands.wake(id);
 		if (res) {
