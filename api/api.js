@@ -143,7 +143,6 @@ app.get("/", async (req, res) => {
 			console.log("No email or password found in .env file");
 		}
 	}
-	commands = new Commands(accessToken);
 	checkAwake();
 	return res.send(JSON.stringify(accessToken));
 });
