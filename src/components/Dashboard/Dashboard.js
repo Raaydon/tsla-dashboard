@@ -29,6 +29,7 @@ export default function Dashboard() {
 	const [loading, setLoading] = useState(true);
 	const [status, setStatus] = useState("loading");
 	const [vehicleData, setVehicleData] = useState({});
+	
 	useEffect(() => {
 		if (
 			!storedData.access_token ||
@@ -48,10 +49,6 @@ export default function Dashboard() {
 		console.log(storedData);
 	}, [storedData]);
 
-	useEffect(() => {
-		console.log(vehicleState);
-	}, [vehicleState]);
-
 	function authenticateUser() {
 		axios.get(`${serverUrl}/auth`).catch((e) => console.log(e));
 	}
@@ -61,7 +58,7 @@ export default function Dashboard() {
 			.get(`${serverUrl}/vehicles`) // retrieves a list of all vehicles' IDs
 			.then((response) => {
 				console.log(response);
-				sessionStorage.setItem("id", response.data[0]); 
+				sessionStorage.setItem("id", response.data[0]);
 				const storedDataClone = { ...storedData };
 				storedDataClone.id = response.data;
 				setStoredData(storedDataClone);
@@ -71,9 +68,7 @@ export default function Dashboard() {
 			.catch((e) => console.log(e));
 	}
 
-	function setVehicle() {
-
-	}
+	function setVehicle() {}
 
 	function retrieveVehicleState(accessToken) {
 		axios
