@@ -25,7 +25,7 @@ async function checkAwake(id) {
 			if (res) {
 				awake = true;
 			}
-		}, 10 * 1000);
+		}, 1 * 1000);
 	}
 }
 
