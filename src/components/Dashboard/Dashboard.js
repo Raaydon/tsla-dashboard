@@ -63,7 +63,7 @@ export default function Dashboard() {
 				setId(response.data[0]);
 				setId_list(response.data);
 				const storedDataClone = { ...storedData };
-				storedDataClone.id = response.data;
+				storedDataClone.id = response.data[0];
 				setStoredData(storedDataClone);
 				retrieveVehicleState(accessToken);
 				retrieveVehicleData(accessToken);
