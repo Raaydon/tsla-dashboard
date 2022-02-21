@@ -36,12 +36,11 @@ async function checkAwake(id) {
 	// 			awake = true;
 	// 		});
 	// }
-	
-	const res = await commands.wake(id)
+
+	const res = await commands.wake(id);
 	if (res) {
-		
-	awake = true;
-}
+		awake = true;
+	}
 }
 
 app.use(function (req, res, next) {
