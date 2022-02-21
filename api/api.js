@@ -1,11 +1,10 @@
-import Commands from './commands.js';
-import teslaLogin from "./tsla";
-
 const express = require("express");
 const axios = require("axios");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const tsla = require("./tsla");
+const Commands = require("./commands")
 var commands = new Commands.Commands(process.env.ACCESS_TOKEN);
 
 const email = process.env.REACT_APP_EMAIL;
@@ -138,7 +137,7 @@ app.get("/vehicle/:id/data/", async (req, res) => {
 app.get("/", async (req, res) => {
 	if (accessToken === undefined) {
 		if (email !== undefined || password !== undefined) {
-			accessToken = await teslaLogin(email, password);
+			accessToken = await tsla.teslaLogin(email, password);
 		} else {
 			console.log("No email or password found in .env file");
 		}
