@@ -78,7 +78,7 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 	) {
 		res.sendStatus(403);
 	} else if (awake === true) {
-		console.log("card id: ", id);
+		console.log("car id: ", id);
 		axios
 			.get(url, {
 				headers: {
