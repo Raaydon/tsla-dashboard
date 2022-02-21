@@ -52,7 +52,7 @@ export default function Dashboard() {
 		console.log(vehicleState);
 	}, [vehicleState]);
 
-	post(url, parameters) {
+	function post(url, parameters) {
 		var payload = {};
 		if (parameters) {
 			payload = {
