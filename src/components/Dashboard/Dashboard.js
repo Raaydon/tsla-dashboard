@@ -29,6 +29,7 @@ export default function Dashboard() {
 	const [loading, setLoading] = useState(true);
 	const [status, setStatus] = useState("loading");
 	const [vehicleData, setVehicleData] = useState({});
+	const [id_list, setId_list] = useState([]);
 
 	useEffect(() => {
 		if (
