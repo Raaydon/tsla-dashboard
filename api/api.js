@@ -2,8 +2,10 @@ const express = require("express");
 const axios = require("axios");
 const dotenv = require("dotenv");
 dotenv.config();
+
 const tsla = require("./tsla");
-const { access } = require("fs");
+const Commands = require("./commands").Commands;
+var commands;
 
 const email = process.env.REACT_APP_EMAIL;
 const password = process.env.REACT_APP_PASSWORD;
@@ -16,7 +18,6 @@ const baseUrl = "https://owner-api.teslamotors.com";
 var awake = false;
 function checkAwake(id) {
 	let url = `${baseUrl}/api/1/vehicles`;
-	let wakeurl = `${baseUrl}/api/1/vehicles/${id}/wake_up`;
 	while (awake === false) {
 		// eslint-disable-next-line no-loop-func
 		setTimeout(() => {
@@ -28,15 +29,9 @@ function checkAwake(id) {
 				})
 				.catch((err) => {
 					console.log(err);
-					axios
-						.post(wakeurl, {
-							headers: {
-								Authorization: `Bearer ${accessToken}`,
-							},
-						})
-						.then((res) => {
-							awake = true;
-						});
+					commands.wake(id).then(() => {
+						awake = true;
+					});
 				});
 		}, 10000); // 10s
 	}
@@ -53,7 +48,7 @@ app.use(function (req, res, next) {
 
 app.get("/vehicles", async (req, res) => {
 	const accessToken = req.headers.authorization.replace(/^Bearer /, "");
-    var id
+	var id;
 	if (!accessToken || accessToken === null || accessToken === "null") {
 		res.sendStatus(403);
 	} else if (awake === true) {
@@ -139,6 +134,7 @@ app.get("/", async (req, res) => {
 	if (accessToken === undefined) {
 		accessToken = await tsla.teslaLogin(email, password);
 	}
+	commands = new Commands(accessToken);
 	checkAwake();
 	return res.send(JSON.stringify(accessToken));
 });
