@@ -27,6 +27,7 @@ class Commands {
 			})
 			.catch((e) => {
 				console.log(e);
+                return false
 			});
 	}
 
@@ -114,4 +115,4 @@ class Commands {
 	}
 }
 
-module.exports = { Commands };
+module.exports = Commands;

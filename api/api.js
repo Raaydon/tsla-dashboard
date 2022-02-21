@@ -4,36 +4,35 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const tsla = require("./tsla");
-const Commands = require("./commands").Commands;
-var commands;
+const Commands = require("./commands");
 
 const email = process.env.REACT_APP_EMAIL;
 const password = process.env.REACT_APP_PASSWORD;
 var accessToken = process.env.REACT_APP_TOKEN;
+var id
+
+var commands = new Commands(accessToken);
 
 const app = express();
 const port = 5000;
 const baseUrl = "https://owner-api.teslamotors.com";
 
 var awake = false;
-function checkAwake(id) {
-	let url = `${baseUrl}/api/1/vehicles`;
-	while (awake === false) {
-		// eslint-disable-next-line no-loop-func
-		setTimeout(() => {
-			axios
-				.get(url, {
-					headers: {
-						Authorization: `Bearer ${accessToken}`,
-					},
-				})
-				.catch((err) => {
-					console.log(err);
-					commands.wake(id).then(() => {
-						awake = true;
-					});
-				});
-		}, 10000); // 10s
+async function checkAwake(id) {
+	if (id !== undefined) {
+		for (let i = 0; i < 1; i++) {
+			console.log(i);
+			// eslint-disable-next-line no-loop-func
+			await setTimeout(() => {
+				console.log("Checking awake");
+				const res = commands.wake(id);
+				if (res !== false) {
+					awake = true;
+				}
+			}, 1 * 1000);
+		}
+	} else {
+		console.log("No vehicle ID provided");
 	}
 }
 
@@ -47,8 +46,6 @@ app.use(function (req, res, next) {
 });
 
 app.get("/vehicles", async (req, res) => {
-	const accessToken = req.headers.authorization.replace(/^Bearer /, "");
-	var id;
 	if (!accessToken || accessToken === null || accessToken === "null") {
 		res.sendStatus(403);
 	} else if (awake === true) {
@@ -60,7 +57,11 @@ app.get("/vehicles", async (req, res) => {
 			})
 			.then((response) => {
 				id = response?.data?.response[0]?.id;
-				res.send(JSON.stringify(id));
+				var id_list = []
+				for (let i = 0; i < response.data.response.length; i++) {
+					id_list.push(response?.data?.response[i]?.id)
+				}
+				res.send(JSON.stringify(id_list));
 			})
 			.catch((err) => {
 				console.log(err);
@@ -70,9 +71,8 @@ app.get("/vehicles", async (req, res) => {
 });
 
 app.get("/vehicle/:id/state/", async (req, res) => {
-	const accessToken = req.headers.authorization.replace(/^Bearer /, ""),
-		id = req.params.id,
-		url = `${baseUrl}/api/1/vehicles/${id}`;
+	id = req.params.id
+	const url = `${baseUrl}/api/1/vehicles/${id}`;
 
 	if (
 		!accessToken ||
@@ -83,7 +83,7 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 	) {
 		res.sendStatus(403);
 	} else if (awake === true) {
-		console.log("card id: ", id);
+		console.log("car id: ", id);
 		axios
 			.get(url, {
 				headers: {
@@ -101,9 +101,8 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 });
 
 app.get("/vehicle/:id/data/", async (req, res) => {
-	const accessToken = req.headers.authorization.replace(/^Bearer /, ""),
-		id = req.params.id,
-		url = `${baseUrl}/api/1/vehicles/${id}/vehicle_data`;
+	id = req.params.id
+	const url = `${baseUrl}/api/1/vehicles/${id}/vehicle_data`;
 
 	if (
 		!accessToken ||
@@ -130,7 +129,7 @@ app.get("/vehicle/:id/data/", async (req, res) => {
 	}
 });
 
-app.get("/", async (req, res) => {
+app.get("/auth", async (req, res) => {
 	if (accessToken === undefined) {
 		if (email !== undefined || password !== undefined) {
 			accessToken = await tsla.teslaLogin(email, password);
@@ -138,8 +137,6 @@ app.get("/", async (req, res) => {
 			console.log("No email or password found in .env file");
 		}
 	}
-	commands = new Commands(accessToken);
-	checkAwake();
 	return res.send(JSON.stringify(accessToken));
 });
 
