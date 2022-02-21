@@ -59,7 +59,7 @@ export default function Dashboard() {
 		axios
 			.get(`${serverUrl}/vehicles`) // retrieves a list of all vehicles' IDs
 			.then((response) => {
-				setVehicle(0)
+				setVehicle(0);
 				setId_list(response.data);
 				const storedDataClone = { ...storedData };
 				storedDataClone.id = response.data[0];
