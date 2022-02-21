@@ -35,7 +35,8 @@ function checkAwake(id) {
 			.then((response) => {
 				awake = true;
 			});
-	}
+			awake = true;
+		}
 }
 
 app.use(function (req, res, next) {
