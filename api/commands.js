@@ -7,18 +7,17 @@ class Commands {
 	}
 
 	post(url, parameters) {
+		var payload = {
+			headers: {
+				Authorization: `Bearer ${this.accessToken}`,
+			},
+		};
 		if (parameters) {
 			payload = {
 				headers: {
-					Authorization: `Bearer ${accessToken}`,
+					Authorization: `Bearer ${this.accessToken}`,
 				},
 				parameters: parameters,
-			};
-		} else {
-			payload = {
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-				},
 			};
 		}
 		axios
@@ -32,86 +31,86 @@ class Commands {
 	}
 
 	wake(id) {
-		url = `${baseUrl}/api/1/vehicles/${id}/wake_up`;
-		return post(url);
+		const url = `${baseUrl}/api/1/vehicles/${id}/wake_up`;
+		return this.post(url);
 	}
 
 	openGarageDoor(id) {
-		url = `${baseUrl}/api/1/vehicles/${id}/command/trigger_homelink`;
-		paramaters = {
+		const url = `${baseUrl}/api/1/vehicles/${id}/command/trigger_homelink`;
+		const parameters = {
 			lat: process.env.LATITUDE,
 			lon: process.env.LONGITUDE,
 		};
-		post(url, parameters);
+		this.post(url, parameters);
 	}
 
 	unlockDoors(id) {
-		url = `${baseUrl}/api/1/vehicles/${id}/command/door_unlock`;
-		return post(url);
+		const url = `${baseUrl}/api/1/vehicles/${id}/command/door_unlock`;
+		return this.post(url);
 	}
 
 	lockDoors(id) {
-		url = `${baseUrl}/api/1/vehicles/${id}/command/door_lock`;
-		return post(url);
+		const url = `${baseUrl}/api/1/vehicles/${id}/command/door_lock`;
+		return this.post(url);
 	}
 
 	openFrontTrunk(id) {
-		url = `${baseUrl}/api/1/vehicles/${id}/command/actuate_trunk`;
-		parameters = {
+		const url = `${baseUrl}/api/1/vehicles/${id}/command/actuate_trunk`;
+		const parameters = {
 			which_trunk: "front",
 		};
-		return post(url, parameters);
+		return this.post(url, parameters);
 	}
 
 	openRearTrunk(id) {
-		url = `${baseUrl}/api/1/vehicles/${id}/command/actuate_trunk`;
-		parameters = {
+		const url = `${baseUrl}/api/1/vehicles/${id}/command/actuate_trunk`;
+		const parameters = {
 			which_trunk: "rear",
 		};
-		return post(url, parameters);
+		return this.post(url, parameters);
 	}
 
 	openWindows(id) {
-		url = `${baseUrl}/api/1/vehicles/${id}/command/window_control`;
-		parameters = {
+		const url = `${baseUrl}/api/1/vehicles/${id}/command/window_control`;
+		const parameters = {
 			command: "vent",
 			lat: process.env.LATITUDE,
 			lon: process.env.LONGITUDE,
 		};
-		return post(url, parameters);
+		return this.post(url, parameters);
 	}
 
 	closeWindows(id) {
-		url = `${baseUrl}/api/1/vehicles/${id}/command/window_control`;
-		parameters = {
+		const url = `${baseUrl}/api/1/vehicles/${id}/command/window_control`;
+		const parameters = {
 			command: "close",
 			lat: 0, // tesla api uses lat, lon 0 for closing windows
 			lon: 0,
 		};
-		return post(url, parameters);
+		return this.post(url, parameters);
 	}
 
 	startCharging(id) {
-		url = `${baseUrl}/api/1/vehicles/${id}/command/charge_start`;
-		return post(url);
+		const url = `${baseUrl}/api/1/vehicles/${id}/command/charge_start`;
+		return this.post(url);
 	}
 
 	startClimateControl(id) {
-		url = `${baseUrl}/api/1/vehicles/${id}/command/auto_conditioning_start`;
-		return post(url);
+		const url = `${baseUrl}/api/1/vehicles/${id}/command/auto_conditioning_start`;
+		return this.post(url);
 	}
 
 	stopClimateControl(id) {
-		url = `${baseUrl}/api/1/vehicles/${id}/command/auto_conditioning_stop`;
-		return post(url);
+		const url = `${baseUrl}/api/1/vehicles/${id}/command/auto_conditioning_stop`;
+		return this.post(url);
 	}
 	setTemp(id, temp) {
-		url = `${baseUrl}/api/1/vehicles/${id}/command/window_control`;
-		parameters = {
+		const url = `${baseUrl}/api/1/vehicles/${id}/command/window_control`;
+		const parameters = {
 			driver_temp: temp,
 			passenger_temp: temp,
 		};
-		return post(url, parameters);
+		return this.post(url, parameters);
 	}
 }
 
