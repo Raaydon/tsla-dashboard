@@ -1,10 +1,10 @@
+import Commands from './commands.js';
 const express = require("express");
 const axios = require("axios");
 const dotenv = require("dotenv");
 dotenv.config();
 
 const tsla = require("./tsla");
-const Commands = require("./commands")
 var commands = new Commands.Commands(process.env.ACCESS_TOKEN);
 
 const email = process.env.REACT_APP_EMAIL;
