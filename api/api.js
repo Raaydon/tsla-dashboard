@@ -16,7 +16,7 @@ const port = 5000;
 const baseUrl = "https://owner-api.teslamotors.com";
 
 var awake = false;
-function checkAwake(id) {
+async function checkAwake(id) {
 	// let url = `${baseUrl}/api/1/vehicles`;
 	// while (awake === false) {
 	// 	console.log(commands);
@@ -36,9 +36,8 @@ function checkAwake(id) {
 	// 			awake = true;
 	// 		});
 	// }
-	commands.wake(id).then(() => {
-		awake = true;
-	});
+	await commands.wake(id)
+	awake = true;
 }
 
 app.use(function (req, res, next) {
