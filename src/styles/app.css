@@ -1,19 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap");
 
-:root {
-  /* --bg: #0e0f10; */
-  --bg: #292f3f;
-  --s-dark: #272a35;
-  --s: #373e4e;
-  --s-light: #7a8194;
-  --pink: #b347ea;
-  --purple: #837dff;
-  --green: #00ac83;
-  --orange: #f18303;
-  --primary: #03a9f1;
-  --keyboard-key-colour: var(--s-light);
-}
-
 * {
   box-sizing: border-box;
 }
@@ -44,7 +30,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background-color: var(--bg);
-  color: white !important;
+  color: var(--txt-color);
+  font-size: 3vh;
   display: flex;
   flex-direction: column;
   align-items: center;

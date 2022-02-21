@@ -1,0 +1,24 @@
+.metrics {
+    width: fit-content;
+    height: fit-content;
+}
+.googleMap {
+    width: 100%;
+    height: 100%;
+    max-width: 66vh;
+    border: 0;
+}
+
+.Dashboard {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.loadingTxt {
+    font-size: 10vh;
+    margin: 10%;
+}
