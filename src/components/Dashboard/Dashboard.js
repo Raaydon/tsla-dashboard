@@ -30,6 +30,7 @@ export default function Dashboard() {
 	const [status, setStatus] = useState("loading");
 	const [vehicleData, setVehicleData] = useState({});
 	const [id_list, setId_list] = useState([]);
+	const [id, setId] = useState(null);
 
 	useEffect(() => {
 		if (
@@ -58,9 +59,9 @@ export default function Dashboard() {
 		axios
 			.get(`${serverUrl}/vehicles`) // retrieves a list of all vehicles' IDs
 			.then((response) => {
-				console.log(response);
 				sessionStorage.setItem("id", response.data[0]);
-				sessionStorage.setItem("id_list", response.data);
+				setId(response.data[0]);
+				setId_list(response.data);
 				const storedDataClone = { ...storedData };
 				storedDataClone.id = response.data;
 				setStoredData(storedDataClone);
