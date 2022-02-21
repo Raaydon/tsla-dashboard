@@ -24,7 +24,6 @@ async function checkAwake(id) {
 			const res = commands.wake(id);
 			if (res !== false) {
 				awake = true;
-				break
 			}
 		}, 1 * 1000);
 	}
