@@ -86,7 +86,7 @@ export default function Dashboard() {
 		axios
 			.get(`${serverUrl}/vehicle/${storedData.id}/state/`, {
 				headers: {
-					Authorization: `Bearer ${accessToken}`,
+					Authorization: accessToken,
 				},
 			})
 			.then((res) => {
