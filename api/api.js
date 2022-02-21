@@ -38,7 +38,10 @@ async function checkAwake(id) {
 	// }
 	
 	const res = await commands.wake(id)
+	if (res) {
+		
 	awake = true;
+}
 }
 
 app.use(function (req, res, next) {
