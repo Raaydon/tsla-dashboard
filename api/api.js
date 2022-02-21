@@ -19,9 +19,9 @@ var awake = false;
 async function checkAwake(id) {
 	while (awake === false) {
 		// eslint-disable-next-line no-loop-func
-		setTimeout(async () => {
+		setTimeout(() => {
 			console.log('Checking awake');
-			const res = await commands.wake(id);
+			const res = commands.wake(id);
 			if (res !== false) {
 				awake = true;
 			}
