@@ -17,7 +17,8 @@ const baseUrl = "https://owner-api.teslamotors.com";
 
 var awake = false;
 async function checkAwake(id) {
-	while (awake === false) {
+	for (let i = 0; i < 5; i++) {
+		console.log(i)
 		// eslint-disable-next-line no-loop-func
 		await setTimeout(() => {
 			console.log('Checking awake');
@@ -27,6 +28,7 @@ async function checkAwake(id) {
 			}
 		}, 1 * 1000);
 	}
+		
 }
 
 app.use(function (req, res, next) {
