@@ -36,7 +36,6 @@ function checkAwake(id) {
 	// 			awake = true;
 	// 		});
 	// }
-	console.log(commands);
 	commands.wake(id).then(() => {
 		awake = true;
 	});
