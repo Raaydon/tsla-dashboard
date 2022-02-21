@@ -22,7 +22,7 @@ async function checkAwake(id) {
 		setTimeout( async () => {
 			console.log('Checking awake');
 			const res = await commands.wake(id);
-			if (res) {
+			if (res !== false) {
 				awake = true;
 			}
 		}, 1 * 1000);
