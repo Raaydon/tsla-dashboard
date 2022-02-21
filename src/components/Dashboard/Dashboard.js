@@ -52,7 +52,7 @@ export default function Dashboard() {
 		console.log(vehicleState);
 	}, [vehicleState]);
 
-	function post(url, parameters) {
+	function get(url, parameters) {
 		var payload = {};
 		if (parameters) {
 			payload = {
@@ -60,7 +60,7 @@ export default function Dashboard() {
 			};
 		}
 		axios
-			.post(url, payload)
+			.get(url, payload)
 			.then((response) => {
 				return response.data;
 			})
