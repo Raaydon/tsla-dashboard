@@ -73,7 +73,11 @@ export default function Dashboard() {
 
 	function retrieveVehicleState(accessToken) {
 		axios
-			.get(`${serverUrl}/vehicle/${storedData.id}/state/`)
+			.get(`${serverUrl}/vehicle/${storedData.id}/state/`, {
+				parameters: {
+					id: storedData.id,
+				}
+			})
 			.then((res) => {
 				setVehicleState(res.data);
 				setLoading(false);
