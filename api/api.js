@@ -132,7 +132,11 @@ app.get("/vehicle/:id/data/", async (req, res) => {
 
 app.get("/", async (req, res) => {
 	if (accessToken === undefined) {
-		accessToken = await tsla.teslaLogin(email, password);
+		if (email !== undefined || password !== undefined) {
+			accessToken = await tsla.teslaLogin(email, password);
+		} else {
+			console.log("No email or password found in .env file");
+		}
 	}
 	commands = new Commands(accessToken);
 	checkAwake();
