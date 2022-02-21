@@ -18,22 +18,20 @@ const baseUrl = "https://owner-api.teslamotors.com";
 var awake = false;
 async function checkAwake(id) {
 	if (id !== undefined) {
-
+		for (let i = 0; i < 1; i++) {
+			console.log(i);
+			// eslint-disable-next-line no-loop-func
+			await setTimeout(() => {
+				console.log("Checking awake");
+				const res = commands.wake(id);
+				if (res !== false) {
+					awake = true;
+				}
+			}, 1 * 1000);
+		}
 	} else {
 		console.log("No vehicle ID provided");
 	}
-	for (let i = 0; i < 1; i++) {
-		console.log(i)
-		// eslint-disable-next-line no-loop-func
-		await setTimeout(() => {
-			console.log('Checking awake');
-			const res = commands.wake(id);
-			if (res !== false) {
-				awake = true;
-			}
-		}, 1 * 1000);
-	}
-		
 }
 
 app.use(function (req, res, next) {
