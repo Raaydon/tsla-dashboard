@@ -44,7 +44,6 @@ app.use(function (req, res, next) {
 });
 
 app.get("/vehicles", async (req, res) => {
-	const accessToken = req.headers.authorization;
 	var id;
 	if (!accessToken || accessToken === null || accessToken === "null") {
 		res.sendStatus(403);
@@ -67,7 +66,6 @@ app.get("/vehicles", async (req, res) => {
 });
 
 app.get("/vehicle/:id/state/", async (req, res) => {
-	const accessToken = req.headers.authorization,
 		id = req.params.id,
 		url = `${baseUrl}/api/1/vehicles/${id}`;
 
