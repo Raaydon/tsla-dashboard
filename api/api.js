@@ -5,7 +5,7 @@ dotenv.config();
 
 const tsla = require("./tsla");
 const Commands = require("./commands");
-var commands = new Commands(process.env.ACCESS_TOKEN);
+var commands = new Commands(process.env.REACT_APP_TOKEN);
 
 const email = process.env.REACT_APP_EMAIL;
 const password = process.env.REACT_APP_PASSWORD;
