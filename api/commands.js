@@ -114,4 +114,4 @@ class Commands {
 	}
 }
 
-module.exports.Commands = Commands;
+module.exports = { Commands };
