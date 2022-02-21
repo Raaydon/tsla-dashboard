@@ -19,7 +19,6 @@ var awake = false;
 function checkAwake(id) {
 	let url = `${baseUrl}/api/1/vehicles`;
 	while (awake === false) {
-		console.log('yes')
 		setTimeout(() => {
 			console.log(commands);
 			axios
