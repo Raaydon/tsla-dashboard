@@ -30,7 +30,7 @@ class Commands {
 			});
 	}
 
-	wake(id) {
+	const wake = (id) => {
 		const url = `${baseUrl}/api/1/vehicles/${id}/wake_up`;
 		return this.post(url);
 	}
