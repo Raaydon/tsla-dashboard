@@ -67,7 +67,7 @@ export default function Dashboard() {
 		axios
 			.get(`${serverUrl}/vehicles`, {
 				headers: {
-					Authorization: `Bearer ${accessToken}`,
+					Authorization: accessToken,
 				},
 			})
 			.then((response) => {
@@ -100,7 +100,7 @@ export default function Dashboard() {
 		axios
 			.get(`${serverUrl}/vehicle/${storedData.id}/data/`, {
 				headers: {
-					Authorization: `Bearer ${accessToken}`,
+					Authorization: accessToken,
 				},
 			})
 			.then((res) => {
