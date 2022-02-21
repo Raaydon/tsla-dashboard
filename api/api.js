@@ -33,7 +33,10 @@ async function checkAwake(id) {
 					commands.wake(id).then(() => {
 						awake = true;
 					});
-				});
+				})
+				.then((response) => {
+					awake = true
+				})
 		}, 10000); // 10s
 	}
 }
