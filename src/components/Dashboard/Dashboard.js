@@ -29,7 +29,7 @@ export default function Dashboard() {
 	const [loading, setLoading] = useState(true);
 	const [status, setStatus] = useState("loading");
 	const [vehicleData, setVehicleData] = useState({});
-	
+
 	useEffect(() => {
 		if (
 			!storedData.access_token ||
@@ -59,6 +59,7 @@ export default function Dashboard() {
 			.then((response) => {
 				console.log(response);
 				sessionStorage.setItem("id", response.data[0]);
+				sessionStorage.setItem("id_list", response.data);
 				const storedDataClone = { ...storedData };
 				storedDataClone.id = response.data;
 				setStoredData(storedDataClone);
@@ -68,7 +69,9 @@ export default function Dashboard() {
 			.catch((e) => console.log(e));
 	}
 
-	function setVehicle() {}
+	function setVehicle(num) {
+		sessionStorage.setItem("id", num);
+	}
 
 	function retrieveVehicleState(accessToken) {
 		axios
