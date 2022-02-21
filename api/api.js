@@ -36,7 +36,8 @@ async function checkAwake(id) {
 	// 			awake = true;
 	// 		});
 	// }
-	await commands.wake(id)
+	
+	const res = await commands.wake(id)
 	awake = true;
 }
 
