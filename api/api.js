@@ -18,7 +18,7 @@ const baseUrl = "https://owner-api.teslamotors.com";
 var awake = false;
 async function checkAwake(id) {
 	while (awake === false) {
-		setTimeout(() => {
+		setTimeout( async () => {
 			const res = await commands.wake(id);
 			if (res) {
 				awake = true;
