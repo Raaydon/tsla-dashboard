@@ -135,7 +135,7 @@ app.get("/vehicle/:id/data/", async (req, res) => {
 	}
 });
 
-app.get("/", async (req, res) => {
+app.get("/auth", async (req, res) => {
 	if (accessToken === undefined) {
 		if (email !== undefined || password !== undefined) {
 			accessToken = await tsla.teslaLogin(email, password);
