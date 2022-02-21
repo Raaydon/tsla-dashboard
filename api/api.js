@@ -61,7 +61,7 @@ app.get("/vehicles", async (req, res) => {
 				for (let i = 0; i < response.data.response.length; i++) {
 					id_list.push(response?.data?.response[i]?.id)
 				}
-				res.send(JSON.stringify(id));
+				res.send(JSON.stringify(id_list));
 			})
 			.catch((err) => {
 				console.log(err);
