@@ -41,6 +41,7 @@ export default function Dashboard() {
 		retrieveVehicleState(storedData.access_token);
 		retrieveVehicleData(storedData.access_token);
 		setStatus("");
+		console.log(st)
 	}, [storedData]);
 
 	useEffect(() => {
