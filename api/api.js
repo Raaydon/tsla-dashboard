@@ -38,6 +38,7 @@ function checkAwake(id) {
 	// }
 	commands.wake(id).then(() => {
 		awake = true;
+	});
 }
 
 app.use(function (req, res, next) {
