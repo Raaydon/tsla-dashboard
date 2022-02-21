@@ -66,8 +66,8 @@ app.get("/vehicles", async (req, res) => {
 });
 
 app.get("/vehicle/:id/state/", async (req, res) => {
-		id = req.params.id,
-		url = `${baseUrl}/api/1/vehicles/${id}`;
+	const id = req.params.id
+	const url = `${baseUrl}/api/1/vehicles/${id}`;
 
 	if (
 		!accessToken ||
