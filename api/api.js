@@ -36,7 +36,7 @@ function checkAwake(id) {
 				.then((response) => {
 					awake = true;
 				});
-		}, 10000); // 10s
+		}, 1000); // 10s
 	}
 }
 
