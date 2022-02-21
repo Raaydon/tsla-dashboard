@@ -52,17 +52,16 @@ export default function Dashboard() {
 		console.log(vehicleState);
 	}, [vehicleState]);
 
+
+	
+
 	function authenticateUser() {
 		axios.get(serverUrl).catch((e) => console.log(e));
 	}
 
 	function storeVehicleId(accessToken) {
 		axios
-			.get(`${serverUrl}/vehicles`, {
-				headers: {
-					Authorization: accessToken,
-				},
-			})
+			.get(`${serverUrl}/vehicles`)
 			.then((response) => {
 				console.log(response);
 				sessionStorage.setItem("id", response.data);
@@ -77,11 +76,7 @@ export default function Dashboard() {
 
 	function retrieveVehicleState(accessToken) {
 		axios
-			.get(`${serverUrl}/vehicle/${storedData.id}/state/`, {
-				headers: {
-					Authorization: accessToken,
-				},
-			})
+			.get(`${serverUrl}/vehicle/${storedData.id}/state/`)
 			.then((res) => {
 				setVehicleState(res.data);
 				setLoading(false);
@@ -91,11 +86,7 @@ export default function Dashboard() {
 
 	function retrieveVehicleData(accessToken) {
 		axios
-			.get(`${serverUrl}/vehicle/${storedData.id}/data/`, {
-				headers: {
-					Authorization: accessToken,
-				},
-			})
+			.get(`${serverUrl}/vehicle/${storedData.id}/data/`)
 			.then((res) => {
 				console.log(res);
 				setVehicleData(res.data);
