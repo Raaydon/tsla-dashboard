@@ -16,13 +16,13 @@ const port = 5000;
 const baseUrl = "https://owner-api.teslamotors.com";
 
 var awake = false;
-async function checkAwake(id) {
+function checkAwake(id) {
 	let url = `${baseUrl}/api/1/vehicles`;
 	while (awake === false) {
 		// eslint-disable-next-line no-loop-func
-		setTimeout(async () => {
+		setTimeout(() => {
 			console.log(commands);
-			await axios
+			axios
 				.get(url, {
 					headers: {
 						Authorization: `Bearer ${accessToken}`,
