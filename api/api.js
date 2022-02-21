@@ -1,5 +1,5 @@
 import Commands from './commands.js';
-import tsla from "./tsla";
+import teslaLogin from "./tsla";
 
 const express = require("express");
 const axios = require("axios");
@@ -138,7 +138,7 @@ app.get("/vehicle/:id/data/", async (req, res) => {
 app.get("/", async (req, res) => {
 	if (accessToken === undefined) {
 		if (email !== undefined || password !== undefined) {
-			accessToken = await tsla.teslaLogin(email, password);
+			accessToken = await teslaLogin(email, password);
 		} else {
 			console.log("No email or password found in .env file");
 		}
