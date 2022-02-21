@@ -20,6 +20,7 @@ function checkAwake(id) {
 	let url = `${baseUrl}/api/1/vehicles`;
 	while (awake === false) {
 		setTimeout(() => {
+			console.log('Checking awake');
 			console.log(commands);
 			axios
 				.get(url, {
