@@ -37,8 +37,7 @@ function checkAwake(id) {
 	// 		});
 	// }
 	console.log(commands);
-	commands.wake(id)
-	.then(() => {
+	commands.wake(id).then(() => {
 		awake = true;
 	});
 }
