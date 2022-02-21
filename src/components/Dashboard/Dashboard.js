@@ -30,7 +30,11 @@ export default function Dashboard() {
 	const [status, setStatus] = useState("loading");
 	const [vehicleData, setVehicleData] = useState({});
 	useEffect(() => {
-		if (!storedData.access_token || storedData.access_token === undefined || storedData.access_token === null) {
+		if (
+			!storedData.access_token ||
+			storedData.access_token === undefined ||
+			storedData.access_token === null
+		) {
 			setStatus("loading");
 			authenticateUser();
 		}
@@ -41,7 +45,7 @@ export default function Dashboard() {
 		retrieveVehicleState(storedData.access_token);
 		retrieveVehicleData(storedData.access_token);
 		setStatus("");
-		console.log(storedData)
+		console.log(storedData);
 	}, [storedData]);
 
 	useEffect(() => {
@@ -49,19 +53,7 @@ export default function Dashboard() {
 	}, [vehicleState]);
 
 	function authenticateUser() {
-		axios
-			.get(serverUrl)
-			.then((response) => {
-				const tempStoredData = storedData;
-				tempStoredData.access_token = response;
-				setStoredData(tempStoredData); // set stored data to token
-				// items.forEach(
-				// 	(item) =>
-				// 		item !== "id" &&
-				// 		localStorage.setItem(item, response.data[item])
-				// );
-			})
-			.catch((e) => console.log(e));
+		axios.get(serverUrl).catch((e) => console.log(e));
 	}
 
 	function storeVehicleId(accessToken) {
@@ -134,7 +126,7 @@ export default function Dashboard() {
 
 	return (
 		<div className="Dashboard">
-			{loading && <p className='loadingTxt' >Fetching data...</p>}
+			{loading && <p className="loadingTxt">Fetching data...</p>}
 			{!loading &&
 				metrics.map((stats, index) => (
 					<div className="metrics" key={index}>
