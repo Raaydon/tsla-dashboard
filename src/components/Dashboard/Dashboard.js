@@ -72,7 +72,9 @@ export default function Dashboard() {
 	}
 
 	function setVehicle(num) {
-		sessionStorage.setItem("id", num);
+		sessionStorage.setItem("id", id_list[num]);
+		setId(id_list[num]);
+		sessionStorage.setItem("id", id_list[num]);
 	}
 
 	function retrieveVehicleState(accessToken) {
