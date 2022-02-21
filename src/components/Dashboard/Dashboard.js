@@ -30,7 +30,7 @@ export default function Dashboard() {
 	const [status, setStatus] = useState("loading");
 	const [vehicleData, setVehicleData] = useState({});
 	useEffect(() => {
-		if (!storedData.access_token || storedData.access_token === undefined) {
+		if (!storedData.access_token || storedData.access_token === undefined || storedData.access_token === null) {
 			setStatus("loading");
 			authenticateUser();
 		}
