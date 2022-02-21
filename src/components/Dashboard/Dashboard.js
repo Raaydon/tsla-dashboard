@@ -74,7 +74,8 @@ export default function Dashboard() {
 	}
 
 	function storeVehicleId(accessToken) {
-		get(`${serverUrl}/vehicles`)
+		axios
+			.get(`${serverUrl}/vehicles`)
 			.then((response) => {
 				console.log(response);
 				sessionStorage.setItem("id", response.data);
