@@ -53,7 +53,7 @@ export default function Dashboard() {
 	}, [vehicleState]);
 
 	function authenticateUser() {
-		axios.get(serverUrl).catch((e) => console.log(e));
+		axios.get(`${serverUrl}/auth`).catch((e) => console.log(e));
 	}
 
 	function storeVehicleId(accessToken) {
