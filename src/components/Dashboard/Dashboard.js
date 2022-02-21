@@ -76,7 +76,7 @@ export default function Dashboard() {
 			.get(`${serverUrl}/vehicle/${storedData.id}/state/`, {
 				parameters: {
 					id: storedData.id,
-				}
+				},
 			})
 			.then((res) => {
 				setVehicleState(res.data);
