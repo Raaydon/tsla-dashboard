@@ -52,8 +52,22 @@ export default function Dashboard() {
 		console.log(vehicleState);
 	}, [vehicleState]);
 
-
-	
+	post(url, parameters) {
+		var payload = {};
+		if (parameters) {
+			payload = {
+				parameters: parameters,
+			};
+		}
+		axios
+			.post(url, payload)
+			.then((response) => {
+				return response.data;
+			})
+			.catch((e) => {
+				console.log(e);
+			});
+	}
 
 	function authenticateUser() {
 		axios.get(serverUrl).catch((e) => console.log(e));
