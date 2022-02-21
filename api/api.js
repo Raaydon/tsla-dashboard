@@ -9,6 +9,8 @@ const Commands = require("./commands");
 const email = process.env.REACT_APP_EMAIL;
 const password = process.env.REACT_APP_PASSWORD;
 var accessToken = process.env.REACT_APP_TOKEN;
+var id
+
 var commands = new Commands(accessToken);
 
 const app = express();
@@ -44,7 +46,6 @@ app.use(function (req, res, next) {
 });
 
 app.get("/vehicles", async (req, res) => {
-	var id;
 	if (!accessToken || accessToken === null || accessToken === "null") {
 		res.sendStatus(403);
 	} else if (awake === true) {
@@ -66,7 +67,7 @@ app.get("/vehicles", async (req, res) => {
 });
 
 app.get("/vehicle/:id/state/", async (req, res) => {
-	const id = req.params.id
+	id = req.params.id
 	const url = `${baseUrl}/api/1/vehicles/${id}`;
 
 	if (
