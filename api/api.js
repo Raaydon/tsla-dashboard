@@ -19,9 +19,9 @@ var awake = false;
 function checkAwake(id) {
 	let url = `${baseUrl}/api/1/vehicles`;
 	while (awake === false) {
-		console.log(commands)
 		// eslint-disable-next-line no-loop-func
 		setTimeout(() => {
+			console.log(commands);
 			axios
 				.get(url, {
 					headers: {
