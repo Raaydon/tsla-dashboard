@@ -43,31 +43,38 @@ export default function Dashboard() {
 		}
 		if (!storedData.id) {
 			setStatus("loading");
-			storeVehicleId(storedData.access_token);
+			storeVehicleId();
 		}
 		retrieveVehicleState(storedData.access_token);
 		retrieveVehicleData(storedData.access_token);
 		setStatus("");
-		console.log(storedData);
 	}, [storedData]);
 
 	function authenticateUser() {
-		axios.get(`${serverUrl}/auth`).catch((e) => console.log(e));
+		axios
+			.get(`${serverUrl}/auth`)
+			.then((res) => {
+				var new_storedData = storedData;
+				new_storedData.access_token = res.data;
+				setStoredData(new_storedData);
+			})
+			.catch((e) => console.log(e));
 	}
 
-	function storeVehicleId(accessToken) {
+	function storeVehicleId() {
 		axios
 			.get(`${serverUrl}/vehicles`) // retrieves a list of all vehicles' IDs
 			.then((response) => {
 				setVehicle(0);
 				setId_list(response.data);
-				const storedDataClone = { ...storedData };
+				var storedDataClone = { ...storedData };
 				storedDataClone.id = response.data[0];
 				setStoredData(storedDataClone);
-				retrieveVehicleState(accessToken);
-				retrieveVehicleData(accessToken);
+				retrieveVehicleState();
+				retrieveVehicleData();
+				console.log('vehicles: ',response)
 			})
-			.catch((e) => console.log(e));
+			.catch((e) => console.log('vehicles e: ',e));
 	}
 
 	function setVehicle(num) {
@@ -75,7 +82,7 @@ export default function Dashboard() {
 		setId(id_list[num]);
 	}
 
-	function retrieveVehicleState(accessToken) {
+	function retrieveVehicleState() {
 		axios
 			.get(`${serverUrl}/vehicle/${storedData.id}/state/`, {
 				parameters: {
@@ -89,7 +96,7 @@ export default function Dashboard() {
 			.catch((e) => console.log(e));
 	}
 
-	function retrieveVehicleData(accessToken) {
+	function retrieveVehicleData() {
 		axios
 			.get(`${serverUrl}/vehicle/${storedData.id}/data/`, {
 				parameters: {

@@ -9,7 +9,7 @@ const Commands = require("./commands");
 const email = process.env.REACT_APP_EMAIL;
 const password = process.env.REACT_APP_PASSWORD;
 var accessToken = process.env.REACT_APP_TOKEN;
-var id
+var id;
 
 var commands = new Commands(accessToken);
 
@@ -47,6 +47,7 @@ app.use(function (req, res, next) {
 
 app.get("/vehicles", async (req, res) => {
 	if (!accessToken || accessToken === null || accessToken === "null") {
+		console.log('no')
 		res.sendStatus(403);
 	} else if (awake === true) {
 		axios
@@ -57,21 +58,22 @@ app.get("/vehicles", async (req, res) => {
 			})
 			.then((response) => {
 				id = response?.data?.response[0]?.id;
-				var id_list = []
+				var id_list = [];
 				for (let i = 0; i < response.data.response.length; i++) {
-					id_list.push(response?.data?.response[i]?.id)
+					id_list.push(response?.data?.response[i]?.id);
 				}
 				res.send(JSON.stringify(id_list));
 			})
 			.catch((err) => {
 				console.log(err);
-				checkAwake(id);
 			});
+	} else if (awake === false) {
+		checkAwake(0);
 	}
 });
 
 app.get("/vehicle/:id/state/", async (req, res) => {
-	id = req.params.id
+	id = req.params.id;
 	const url = `${baseUrl}/api/1/vehicles/${id}`;
 
 	if (
@@ -101,7 +103,7 @@ app.get("/vehicle/:id/state/", async (req, res) => {
 });
 
 app.get("/vehicle/:id/data/", async (req, res) => {
-	id = req.params.id
+	id = req.params.id;
 	const url = `${baseUrl}/api/1/vehicles/${id}/vehicle_data`;
 
 	if (

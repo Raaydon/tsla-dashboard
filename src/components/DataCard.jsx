@@ -1,6 +1,6 @@
 import React from "react";
 
-const DataCard = (props) => {
+function DataCard(props) {
 	const renderMetric = (metric) => {
 		if (typeof metric === "number" || typeof metric == "string") {
 			return <span>{metric}</span>;

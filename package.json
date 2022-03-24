@@ -41,7 +41,6 @@
     "build": "vite build",
     "preview": "vite preview",
     "server": "nodemon api/api.js",
-    "serverprod": "node server/server.js",
     "autoprefixer": "postcss src/*.css --use autoprefixer -d build/",
     "dura": "dura watch && dura serve"
   },
