@@ -1,13 +1,17 @@
 # tesla dashboard
 
-to run the website locally:
+A Python implementation based on [unofficial documentation](https://tesla-api.timdorr.com/) of the client side interface to the Tesla Motors Owner API, which provides functionality to monitor and control Tesla products remotely.
+The dashboard is made using [react](https://reactjs.org/) and built with [vite](https://vite.io/).
+
+## to run the website locally:
 
 ```
 npm i
 npm run dev
 ```
+this will be ran on [http://localhost:3000](http://localhost:3000)
 
-to run the server locally:
+## to run the server locally:
 
 Make sure you have Python 2.7+ or 3.5+ installed on your system
 
@@ -26,6 +30,13 @@ If you prefer Firefox, install GeckoDriver or on Ubuntu as follows:
 ```
 sudo apt-get install firefox-geckodriver
 ```
+
+to run the server:
+
+```
+python tesla_api.py
+```
+this will be ran on [http://localhost:5000](http://localhost:5000)
 
 # example data
 
