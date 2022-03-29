@@ -37,7 +37,7 @@
   "scripts": {
     "githubdeploy": "npm run build && gh-pages -d build",
     "netlifydeploy": "npm run build && netlify deploy --prod",
-    "dev": "vite --host",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "server": "nodemon api/api.js",
