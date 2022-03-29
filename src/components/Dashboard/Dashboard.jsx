@@ -2,110 +2,24 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DataCard from "../DataCard";
 
-const items = [
-	"access_token",
-	"token_type",
-	"expires_in",
-	"refresh_token",
-	"created_at",
-	"id",
-];
-
-const dataObj = {};
 const serverUrl = "http://localhost:5000";
 
-items.forEach((item) => {
-	var x = localStorage.getItem(item);
-	if (x === "undefined") {
-		dataObj[item] = undefined;
-	} else {
-		dataObj[item] = x;
-	}
-});
-
 export default function Dashboard() {
-	const [storedData, setStoredData] = useState(dataObj);
-	const [vehicleState, setVehicleState] = useState({});
-	const [loading, setLoading] = useState(true);
-	const [status, setStatus] = useState("loading");
 	const [vehicleData, setVehicleData] = useState({});
-	const [id_list, setId_list] = useState([]);
-	const [id, setId] = useState(null);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		if (
-			!storedData.access_token ||
-			storedData.access_token === undefined ||
-			storedData.access_token === null
-		) {
-			setStatus("loading");
-			authenticateUser();
-		}
-		if (!storedData.id) {
-			setStatus("loading");
-			storeVehicleId();
-		}
-		retrieveVehicleState(storedData.access_token);
-		retrieveVehicleData(storedData.access_token);
-		setStatus("");
-	}, [storedData]);
+		get_vehicle_data();
+		setLoading("");
+	}, []);
 
-	function authenticateUser() {
+	function get_vehicle_data() {
 		axios
-			.get(`${serverUrl}/auth`)
-			.then((res) => {
-				var new_storedData = storedData;
-				new_storedData.access_token = res.data;
-				setStoredData(new_storedData);
-			})
-			.catch((e) => console.log(e));
-	}
-
-	function storeVehicleId() {
-		axios
-			.get(`${serverUrl}/vehicles`) // retrieves a list of all vehicles' IDs
-			.then((response) => {
-				setVehicle(0);
-				setId_list(response.data);
-				var storedDataClone = { ...storedData };
-				storedDataClone.id = response.data[0];
-				setStoredData(storedDataClone);
-				retrieveVehicleState();
-				retrieveVehicleData();
-				console.log('vehicles: ',response)
-			})
-			.catch((e) => console.log('vehicles e: ',e));
-	}
-
-	function setVehicle(num) {
-		sessionStorage.setItem("id", id_list[num]);
-		setId(id_list[num]);
-	}
-
-	function retrieveVehicleState() {
-		axios
-			.get(`${serverUrl}/vehicle/${storedData.id}/state/`, {
-				parameters: {
-					id: storedData.id,
-				},
-			})
-			.then((res) => {
-				setVehicleState(res.data);
-				setLoading(false);
-			})
-			.catch((e) => console.log(e));
-	}
-
-	function retrieveVehicleData() {
-		axios
-			.get(`${serverUrl}/vehicle/${storedData.id}/data/`, {
-				parameters: {
-					id: storedData.id,
-				},
-			})
+			.get(`${serverUrl}/vehicle_data`)
 			.then((res) => {
 				console.log(res);
 				setVehicleData(res.data);
+				setLoading(false);
 			})
 			.catch((e) => console.log(e));
 	}
