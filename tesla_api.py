@@ -16,7 +16,9 @@ app.config["CORS_HEADERS"] = "Content-Type"
 # def main():
 #     return "x"
 
-
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 @app.route("/vehicle_data", methods=["GET"])
 @cross_origin()
 def getData():
