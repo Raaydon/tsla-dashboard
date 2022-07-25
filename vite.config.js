@@ -32,7 +32,7 @@ export default defineConfig({
     }
     
   })],
-	publicDir: "/public",
+	publicDir: "./public",
 	base: "/",
 	build: {
 		outDir: "build",
