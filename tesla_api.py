@@ -22,7 +22,6 @@ def index():
 def getData():
     with teslapy.Tesla(email) as tesla:
         vehicles = tesla.vehicle_list()
-        # print(vehicles)
         vehicles[0].sync_wake_up()
 
         # vehicles[0].command('ACTUATE_TRUNK', which_trunk='front')
