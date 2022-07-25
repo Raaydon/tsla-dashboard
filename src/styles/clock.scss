@@ -90,6 +90,24 @@
 		font-family: monospace, Arial, Helvetica, sans-serif;
 		text-align: center;
 	}
+    @media (max-width: 1920px) {
+		.calendar,
+		.ampm {
+			font-size: 0.7rem;
+		}
+
+		.hour {
+			font-size: 4rem;
+		}
+
+		.clock {
+			padding: 5px;
+		}
+
+		.countdown {
+			font-size: 4rem;
+		}
+	}
 
 	@media (max-width: 770px) {
 		.calendar,
