@@ -48,10 +48,8 @@ export default function Dashboard() {
 
 	return (
 		<>
-			<div className="clock_container">
 			<Clock />
 
-			</div>
 
 			<div className="Dashboard">
 				{loading && <p className="loadingTxt">Fetching data...</p>}
