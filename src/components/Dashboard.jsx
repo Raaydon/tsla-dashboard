@@ -47,6 +47,7 @@ export default function Dashboard() {
 
 	return (
 		<div className="Dashboard">
+			<Clock />
 			{loading && <p className="loadingTxt">Fetching data...</p>}
 			{!loading &&
 				metrics.map((stats, index) => (
