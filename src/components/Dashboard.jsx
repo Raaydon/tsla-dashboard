@@ -47,8 +47,10 @@ export default function Dashboard() {
 	];
 
 	return (
-		<div className="Dashboard">
+		<>
 			<Clock />
+
+		<div className="Dashboard">
 			{loading && <p className="loadingTxt">Fetching data...</p>}
 			{!loading &&
 				metrics.map((stats, index) => (
@@ -70,5 +72,6 @@ export default function Dashboard() {
 				loading="lazy"
 			></iframe>
 		</div>
+		</>
 	);
 }
