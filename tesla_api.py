@@ -12,10 +12,6 @@ cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 
 
-# @app.route("/", methods=["GET"])
-# def main():
-#     return "x"
-
 @app.route('/')
 def index():
     return app.send_static_file('index.html')
