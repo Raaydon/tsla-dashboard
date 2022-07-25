@@ -30,4 +30,4 @@ def getData():
         return vehicles[0].get_vehicle_data()
 
 
-app.run(port=5000)
+app.run(port=3000)
