@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DataCard from "./DataCard";
+import { Clock } from './components/Clock';
 
 const serverUrl = "http://localhost:5000";
 
