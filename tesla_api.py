@@ -7,7 +7,7 @@ from flask_cors import CORS, cross_origin
 
 email = os.getenv("REACT_APP_EMAIL")
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../build', static_url_path='/')
 cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 
