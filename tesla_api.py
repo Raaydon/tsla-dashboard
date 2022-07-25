@@ -7,8 +7,7 @@ from flask_cors import CORS, cross_origin
 
 email = os.getenv("REACT_APP_EMAIL")
 
-# app = Flask(__name__, static_folder='./build', static_url_path='/')
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./build', static_url_path='/')
 cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 
@@ -17,9 +16,9 @@ app.config["CORS_HEADERS"] = "Content-Type"
 # def main():
 #     return "x"
 
-# @app.route('/')
-# def index():
-#     return app.send_static_file('index.html')
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 @app.route("/vehicle_data", methods=["GET"])
 @cross_origin()
 def getData():
