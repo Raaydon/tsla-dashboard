@@ -5,7 +5,8 @@ import teslapy
 from flask import Flask, json
 from flask_cors import CORS, cross_origin
 
-email = os.getenv("REACT_APP_EMAIL")
+email = 'john@rimell.cc'
+# email = os.getenv("REACT_APP_EMAIL")
 
 app = Flask(__name__, static_folder='./build', static_url_path='/')
 cors = CORS(app)
