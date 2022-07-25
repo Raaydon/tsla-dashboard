@@ -16,7 +16,7 @@ this will be ran on [http://localhost:3000](http://localhost:3000)
 Make sure you have Python 2.7+ or 3.5+ installed on your system
 
 ```
-python -m pip install requests_oauthlib geopy pywebview selenium websocket-client
+python -m pip install requests_oauthlib geopy pywebview selenium websocket-client flask flask_cors
 ```
 
 and install ChromeDriver to use Selenium or on Ubuntu as follows:
