@@ -50,7 +50,6 @@ export default function Dashboard() {
 		<>
 			<Clock />
 
-
 			<div className="Dashboard">
 				{loading && <p className="loadingTxt">Fetching data...</p>}
 				{!loading &&
