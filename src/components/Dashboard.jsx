@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DataCard from "./DataCard";
 import { Clock } from "./Clock/Clock";
+import Weather from './Weather'
 
 const serverUrl = "http://localhost:5000";
 
@@ -49,7 +50,6 @@ export default function Dashboard() {
 	return (
 		<>
 			<Clock />
-
 			<div className="Dashboard">
 				{loading && <p className="loadingTxt">Fetching data...</p>}
 				{!loading &&
