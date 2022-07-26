@@ -1,13 +1,12 @@
 # https://github.com/tdorssers/TeslaPy
 
-from dotenv import dotenv_values
-
+import os
 import teslapy
 from flask import Flask, json
 from flask_cors import CORS, cross_origin
 from waitress import serve
 
-email = dotenv_values(".env")["REACT_APP_EMAIL"]
+EMAIL = os.getenv("REACT_APP_EMAIL")
 
 app = Flask(__name__, static_folder='./build', static_url_path='')
 CORS(app, headers='Content-Type')
@@ -20,7 +19,7 @@ def index():
 
 @app.route("/vehicle_data", methods=["GET"])
 def getData():
-    with teslapy.Tesla(email) as tesla:
+    with teslapy.Tesla(EMAIL) as tesla:
         vehicles = tesla.vehicle_list()
         vehicles[0].sync_wake_up()
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DataCard from "./DataCard";
 import { Clock } from "./Clock/Clock";
-import Weather from './Weather'
 
 const serverUrl = "http://localhost:5000";
 
