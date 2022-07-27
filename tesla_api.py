@@ -6,7 +6,8 @@ from flask import Flask, json
 from flask_cors import CORS, cross_origin
 from waitress import serve
 
-EMAIL = os.getenv("REACT_APP_EMAIL")
+# EMAIL = os.getenv("REACT_APP_EMAIL")
+EMAIL = 'john@rimell.cc'
 
 app = Flask(__name__, static_folder='./build', static_url_path='')
 CORS(app, headers='Content-Type')

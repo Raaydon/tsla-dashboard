@@ -1,18 +1,20 @@
 import "./styles/main.scss";
-import React from "react";
+import React, {useEffect} from "react";
 import Dashboard from "./components/Dashboard";
+import axios from "axios";
 
 function App() {
 	useEffect(() => {
 		setInterval(() => {
-			fetch("http://192.168.1.32/tesla/php/check_for_reload.php")
-				.then((response) => response.json())
+			axios
+				.get("http://192.168.1.32/tesla/php/check_for_reload.php")
 				.then((data) => {
 					if (data.reload) {
 						window.location.reload();
+						console.log('reloaded')
 					}
 				});
-		}, 30000);
+		}, 25000);
 	});
 
 	return (
