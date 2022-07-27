@@ -1,9 +1,24 @@
 import "./styles/main.scss";
-import React, {useEffect} from "react";
+import React, { useEffect, createContext, useState } from "react";
 import Dashboard from "./components/Dashboard";
 import axios from "axios";
 
+export const MainContext = createContext();
+
 function App() {
+	const serverUrl = "http://localhost:5000";
+
+	const [vehicleData, setVehicleData] = useState({});
+	function get_vehicle_data() {
+		axios
+			.get(`${serverUrl}/vehicle_data`)
+			.then((res) => {
+				console.log(res);
+				setVehicleData(res.data);
+			})
+			.catch((e) => console.log(e));
+	}
+
 	useEffect(() => {
 		setInterval(() => {
 			axios
@@ -11,16 +26,19 @@ function App() {
 				.then((data) => {
 					if (data.reload) {
 						window.location.reload();
-						console.log('reloaded')
 					}
 				});
-		}, 25000);
+		}, 20000);
 	});
 
 	return (
-		<div className="App">
-			<Dashboard />
-		</div>
+		<MainContext.Provider
+			value={{ vehicleData, get_vehicle_data, setVehicleData }}
+		>
+			<div className="App">
+				<Dashboard />
+			</div>
+		</MainContext.Provider>
 	);
 }
 

@@ -11,8 +11,8 @@ function DataCard(props) {
 	return (
 		<div className="card">
 			<div className="card__body">
-				<p>{props.label}</p>
-				<p>{renderMetric(props.metric)}</p>
+				<p className="metric_subtitle">{props.label}</p>
+				{renderMetric(props.metric)}
 			</div>
 		</div>
 	);

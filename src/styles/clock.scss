@@ -4,18 +4,15 @@
 }
 
 .clock {
-	margin: 10px;
 	border-radius: 10px;
-	background: #0d1621;
+	background: var(--s);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
+	padding: 2vh;
+	margin: 20px;
 	// overflow: hidden;
-	padding: 20px 20px 5px 20px;
-	position: absolute;
-    right: 0;
-    top: 0;
-
 
 	.calendar {
 		font-size: 2rem;
@@ -89,7 +86,7 @@
     @media (max-width: 1920px) {
 		.calendar,
 		.ampm {
-			font-size: 0.9rem;
+			font-size: 2rem;
 		}
 
 		.hour {

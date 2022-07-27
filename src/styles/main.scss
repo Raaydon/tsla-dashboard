@@ -1,16 +1,15 @@
 @import './app.scss';
-@import './card.scss';
 @import './dashboard.scss';
 @import './weather.scss';
 @import './clock.scss';
 
 :root {
     /* --bg: #0e0f10; */
-    --bg: #292f3f;
+    --bg: #000000;
     --s-dark: #272a35;
-    --s: #373e4e;
+    --s: #161616;
     --s-light: #7a8194;
-    --txt-color: rgb(228, 228, 228);
+    --txt-color: rgb(255, 255, 255);
     --pink: #b347ea;
     --purple: #837dff;
     --green: #00ac83;
